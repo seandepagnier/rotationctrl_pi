@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rotationctrl_pi 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-12 10:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/PreferencesDialog.cpp:75
+msgid "Enabling/Disabling rotation via [ ] \\ keys requires restarting OpenCPN."
+msgstr ""
+
+#: src/PreferencesDialog.cpp:77 src/PreferencesDialog.cpp:91
+msgid "Rotation Control Information"
+msgstr ""
+
+#: src/PreferencesDialog.cpp:86
+msgid ""
+"Advanced Control of the Viewport Rotation\n"
+"\n"
+"Wind Up requires wind sensor via nmea data.\n"
+"Heading Up Requires magnetic heading sensor via nmea data, and the wmm plugin "
+"must be available.\n"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:22
+msgid "Toolbar Icons"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:29
+msgid "Manual left and Right Buttons"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:35 src/rotationctrl_pi.cpp:93
+msgid "North Up"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:38 src/rotationctrl_pi.cpp:97
+msgid "South Up"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:41
+msgid "Course Up  (From GPS)"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:44
+msgid "Heading Up (NMEA)"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:47
+msgid "Route Up (To waypoint)"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:50
+msgid "Wind Up (NMEA)"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:60
+msgid "Dynamic Filter Settings"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:67
+msgid "Update Period"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:71
+msgid "5"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:74 src/RotationCtrlUI.cpp:85
+msgid "Seconds"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:78
+msgid "Filter Over"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:95
+msgid "Enable Rotation via [ ] / Keys"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:109
+msgid "Information"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:112
+msgid "About Author"
+msgstr ""
+
+#: src/RotationCtrlUI.h:68
+msgid "Rotation Control Preferences"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:85
+msgid "Rotate CCW"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:89
+msgid "Rotate CW"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:101
+msgid "Course Up"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:105
+msgid "Heading Up"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:109
+msgid "Route Up"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:113
+msgid "Wind Up"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:166
+msgid "Rotation Control"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:171
+msgid "Rotation Control PlugIn for OpenCPN"
+msgstr ""
+
+#: src/rotationctrl_pi.cpp:176
+msgid ""
+"Rotation Control PlugIn for OpenCPN\n"
+"Advanced control of the viewport rotation angle."
+msgstr ""

@@ -1,0 +1,6 @@
+src/PreferencesDialog.cpp
+src/PreferencesDialog.h
+src/RotationCtrlUI.cpp
+src/RotationCtrlUI.h
+src/rotationctrl_pi.cpp
+src/rotationctrl_pi.h
