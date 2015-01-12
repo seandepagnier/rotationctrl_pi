@@ -31,15 +31,6 @@
 #include "icons.h"
 
 
-double heading_resolve(double degrees)
-{
-    while(degrees < -180)
-        degrees += 360;
-    while(degrees >= 180)
-        degrees -= 360;
-    return degrees;
-}
-
 // the class factories, used to create and destroy instances of the PlugIn
 
 extern "C" DECL_EXP opencpn_plugin* create_pi(void *ppimgr)
@@ -65,7 +56,8 @@ rotationctrl_pi::rotationctrl_pi(void *ppimgr)
     initialize_images();
     m_lastfix.Lat = NAN;
     m_lasttimerfix.Lat = NAN;
-    m_sog = m_cog = NAN;
+    m_sog = m_cog = 0;
+    m_heading = m_truewind = 0;
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -222,31 +214,29 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
 
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
-    /* calculate course and speed over ground from gps */
-    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
-    if(!isnan(m_lastfix.Lat) && !isnan(m_lasttimerfix.Lat) && dt > 0) {
-        /* this way helps avoid surge speed from gps from surfing waves etc... */
-        double cog, sog;
-        DistanceBearingMercator_Plugin(m_lastfix.Lat, m_lastfix.Lon,
-                                       m_lasttimerfix.Lat, m_lasttimerfix.Lon, &cog, &sog);
-        sog *= 3600.0 / dt;
-
-        if(isnan(m_cog))
-            m_cog = cog, m_sog = sog;
-        else {
-            m_cog = m_filter_lp*cog + (1-m_filter_lp)*m_cog;
-            m_sog = m_filter_lp*sog + (1-m_filter_lp)*m_sog;
-        }
-    } else
-        m_sog = m_cog = NAN;
+    if(m_currenttool == COURSE_UP) {
+        /* calculate course and speed over ground from gps */
+        double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
+        if(!isnan(m_lastfix.Lat) && !isnan(m_lasttimerfix.Lat) && dt > 0) {
+            /* this way helps avoid surge speed from gps from surfing waves etc... */
+            double cog, sog;
+            DistanceBearingMercator_Plugin(m_lastfix.Lat, m_lastfix.Lon,
+                                           m_lasttimerfix.Lat, m_lasttimerfix.Lon, &cog, &sog);
+            sog *= 3600.0 / dt;
+            
+            m_cog = FilterAngle(cog, m_cog);
+            m_sog = FilterSpeed(sog, m_sog);
+        } else
+            m_sog = m_cog = 0;
+    }
     
     m_lasttimerfix = m_lastfix;
 
     switch(m_currenttool) {
     case COURSE_UP:   m_vp.rotation = m_cog;  break;
-    case HEADING_UP:  m_vp.rotation = 0; break; // incomplete
+    case HEADING_UP:  m_vp.rotation = m_heading; break; // incomplete
     case ROUTE_UP:    m_vp.rotation = 0; break; // incomplete
-    case WIND_UP:     m_vp.rotation = 0; break; // incomplete
+    case WIND_UP:     m_vp.rotation = m_truewind; break; // incomplete
     }
 
     if(m_currenttool)
@@ -274,7 +264,7 @@ bool rotationctrl_pi::LoadConfig(void)
     SetToolbarToolViz(m_leftclick_tool_ids[WIND_UP], pConf->Read( _T ( "WindUp" ), 0L));
 
     m_filter_msecs = 1000.0 * pConf->Read( _T ( "UpdatePeriod" ), 5.0);
-    m_filter_lp = 1.0 / pConf->Read( _T ( "FilterSeconds" ), 10.0);
+    m_filter_lp = m_filter_msecs / 1000.0 / pConf->Read( _T ( "FilterSeconds" ), 10.0);
     
     return true;
 }
@@ -291,6 +281,80 @@ bool rotationctrl_pi::SaveConfig(void)
     return true;
 }
 
+void rotationctrl_pi::SetNMEASentence( wxString &sentence )
+{
+    if(!m_currenttool)
+        return;
+
+    m_NMEA0183 << sentence;
+
+    if( !m_NMEA0183.PreParse() )
+        return;
+
+    if( m_currenttool == HEADING_UP && m_NMEA0183.LastSentenceIDReceived == _T("HDT") ) {
+        if( m_NMEA0183.Parse() ) {
+            if( !wxIsNaN(m_NMEA0183.Hdt.DegreesTrue) )
+                m_heading = FilterAngle(m_NMEA0183.Hdt.DegreesTrue, m_heading);
+        }
+    }
+    // NMEA 0183 standard Wind Direction and Speed, with respect to north.
+    else if( m_currenttool == WIND_UP && m_NMEA0183.LastSentenceIDReceived == _T("MWD") ) {
+        if( m_NMEA0183.Parse() ) {
+            // Option for True vs Magnetic
+            wxString windunit;
+            double truewind = 0;
+            if( m_NMEA0183.Mwd.WindAngleTrue < 999. ) { //if WindAngleTrue is available, use it ...
+                truewind = m_NMEA0183.Mwd.WindAngleTrue;
+            } else if( m_NMEA0183.Mwd.WindAngleMagnetic < 999. ) { //otherwise try WindAngleMagnetic ...
+                // TODO: use wmm plugin to compensate to true wind
+                truewind = m_NMEA0183.Mwd.WindAngleMagnetic;
+            }
+
+            m_truewind = FilterAngle(truewind, m_truewind);
+        }
+    }
+
+    /* maybe true wind is not available?  we could use this along with heading from nmea or computed from gps?
+       can use wmm plugin if only magnetic data is available as weell
+       in the case of apparent wind, we need to compensate from speed as well (either water or gps), */
+
+#if 0 // Not let implemented
+
+        // NMEA 0183 standard Wind Speed and Angle, in relation to the vessel's bow/centerline.
+        else if( m_NMEA0183.LastSentenceIDReceived == _T("MWV") ) {
+            if( m_NMEA0183.Parse() ) {
+                if( m_NMEA0183.Mwv.IsDataValid == NTrue ) {
+                    m_NMEA0183.Mwv.WindAngle;
+                }
+            }
+        }
+
+        /* NMEA 0183 Relative (Apparent) Wind Speed and Angle. Wind angle in relation
+         * to the vessel's heading, and wind speed measured relative to the moving vessel. */
+        else if( m_NMEA0183.LastSentenceIDReceived == _T("VWR") ) {
+            if( m_NMEA0183.Parse() ) {
+
+                    wxString awaunit;
+                    awaunit = m_NMEA0183.Vwr.DirectionOfWind == Left ? _T("\u00B0L") : _T("\u00B0R");
+                    m_NMEA0183.Vwr.WindDirectionMagnitude;
+                }
+            }
+        }
+        /* NMEA 0183 True wind angle in relation to the vessel's heading, and true wind
+         * speed referenced to the water. True wind is the vector sum of the Relative
+         * (apparent) wind vector and the vessel's velocity vector relative to the water along
+         * the heading line of the vessel. It represents the wind at the vessel if it were
+         * stationary relative to the water and heading in the same direction. */
+        else if( m_NMEA0183.LastSentenceIDReceived == _T("VWT") ) {
+            if( m_NMEA0183.Parse() ) {
+                    vwtunit = m_NMEA0183.Vwt.DirectionOfWind == Left ? _T("\u00B0L") : _T("\u00B0R");
+                    m_NMEA0183.Vwt.WindDirectionMagnitude;
+                }
+            }
+        }
+#endif
+}
+
 void rotationctrl_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 {
     if(pfix.FixTime && pfix.nSats)
@@ -305,4 +369,32 @@ void rotationctrl_pi::ShowPreferencesDialog( wxWindow* parent )
     dlg.ShowModal();
 
     LoadConfig();
+}
+
+double rotationctrl_pi::FilterAngle(double input, double last)
+{
+    if(isnan(input))
+        return last;
+
+    if(isnan(last))
+        return input;
+
+    double x = sin(input), y = cos(input);
+    double lx = sin(last), ly = cos(last);
+
+    x = m_filter_lp*x + (1-m_filter_lp)*lx;
+    y = m_filter_lp*y + (1-m_filter_lp)*ly;
+
+    return atan2(x, y);
+}
+
+double rotationctrl_pi::FilterSpeed(double input, double last)
+{
+    if(isnan(input))
+        return last;
+
+    if(isnan(last))
+        return input;
+
+    return m_filter_lp*input + (1-m_filter_lp)*last;
 }

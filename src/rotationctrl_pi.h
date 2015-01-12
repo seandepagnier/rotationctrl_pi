@@ -72,7 +72,7 @@ inline double round(double n) { return n < 0.0 ? ceil(n - 0.5) : floor(n + 0.5);
 
 #endif
 
-double heading_resolve(double degrees);
+#include <nmea0183.h>
 
 //----------------------------------
 //    The PlugIn Class Definition
@@ -117,7 +117,8 @@ public:
 
       wxDateTime m_LastFixTime;
 
-      double m_sog, m_cog;
+      double m_sog, m_cog; // from gps
+      double m_heading, m_truewind;
 
       int m_filter_msecs;
       double m_filter_lp;
@@ -126,6 +127,9 @@ public:
 
 protected:
 
+      double FilterAngle(double input, double last);
+      double FilterSpeed(double input, double last);
+
       PlugIn_Position_Fix_Ex m_lastfix, m_lasttimerfix;
 
 private:
@@ -133,12 +137,15 @@ private:
       bool    SaveConfig(void);
 
       void SetCurrentViewPort(PlugIn_ViewPort &vp) { m_vp = vp; }
+      void SetNMEASentence( wxString &sentence );
       void    SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
 
       wxTimer m_Timer;
 
       PlugIn_ViewPort m_vp;
       int m_currenttool;
+
+      NMEA0183 m_NMEA0183;
 };
 
 #endif

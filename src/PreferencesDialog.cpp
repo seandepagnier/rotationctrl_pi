@@ -73,7 +73,7 @@ PreferencesDialog::~PreferencesDialog()
 
     if(brotate != m_cbRotationKeys->GetValue()) {
         wxMessageDialog mdlg(NULL, _("\
-Enabling/Disabling rotation via [ ] \\ keys requires restarting OpenCPN."),
+Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."),
                              _("Rotation Control Information"), wxOK | wxICON_INFORMATION);
         mdlg.ShowModal();
         pConf->SetPath ( _T( "/Settings" ) );
@@ -86,7 +86,7 @@ void PreferencesDialog::OnInformation( wxCommandEvent& event )
     wxMessageDialog mdlg(this, _("\
 Advanced Control of the Viewport Rotation\n\n\
 Wind Up requires wind sensor via nmea data.\n\
-Heading Up Requires magnetic heading sensor via nmea data, and the wmm plugin must be available.\n\
+Heading Up Requires magnetic heading sensor via nmea data.\n\
 "),
                          _("Rotation Control Information"), wxOK | wxICON_INFORMATION);
     mdlg.ShowModal();
