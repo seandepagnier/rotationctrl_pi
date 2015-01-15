@@ -978,8 +978,7 @@ class wxPoint2DDouble;
 extern "C"  DECL_EXP void GetDoubleCanvasPixLL(PlugIn_ViewPort *vp, wxPoint2DDouble *pp, double lat, double lon);
 
 
-/* API 1.13 Plugins to set the ViewPort */
-extern DECL_EXP void SetViewport( PlugIn_ViewPort &vp );
-
+/* API 1.13 Plugins to set the Rotation */
+extern DECL_EXP void SetRotation(double rotation);
 
 #endif //_PLUGIN_H_

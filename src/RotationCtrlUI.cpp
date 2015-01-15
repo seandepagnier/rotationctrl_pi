@@ -86,6 +86,17 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	m_staticText31->Wrap( -1 );
 	fgSizer6->Add( m_staticText31, 0, wxALL, 5 );
 	
+	m_staticText5 = new wxStaticText( this, wxID_ANY, _("Rotation Offset"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText5->Wrap( -1 );
+	fgSizer6->Add( m_staticText5, 0, wxALL, 5 );
+	
+	m_sRotationOffset = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 359, 0 );
+	fgSizer6->Add( m_sRotationOffset, 0, wxALL, 5 );
+	
+	m_staticText6 = new wxStaticText( this, wxID_ANY, _("Degrees"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6->Wrap( -1 );
+	fgSizer6->Add( m_staticText6, 0, wxALL, 5 );
+	
 	
 	sbSizer4->Add( fgSizer6, 1, wxEXPAND, 5 );
 	
@@ -142,6 +153,7 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	m_cbWindUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_tUpdateRate->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sFilterSeconds->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_sRotationOffset->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRotationKeys->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigureKeys ), NULL, this );
 	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnInformation ), NULL, this );
 	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnAboutAuthor ), NULL, this );
@@ -159,6 +171,7 @@ PreferencesDialogBase::~PreferencesDialogBase()
 	m_cbWindUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_tUpdateRate->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sFilterSeconds->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_sRotationOffset->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRotationKeys->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigureKeys ), NULL, this );
 	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnInformation ), NULL, this );
 	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnAboutAuthor ), NULL, this );

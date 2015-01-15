@@ -43,6 +43,7 @@ PreferencesDialog::PreferencesDialog( wxWindow* parent)
 
     m_tUpdateRate->SetValue( pConf->Read( _T ( "UpdatePeriod" ), _T("5")));
     m_sFilterSeconds->SetValue( pConf->Read( _T ( "FilterSeconds" ), 10L));
+    m_sRotationOffset->SetValue( pConf->Read( _T ( "RotationOffset" ), 0L));
 
     pConf->SetPath ( _T( "/Settings" ) );
     m_cbRotationKeys->SetValue(pConf->Read( _T ( "EnableRotateKeys" ), 0L));
@@ -67,6 +68,7 @@ PreferencesDialog::~PreferencesDialog()
 
     pConf->Write( _T ( "UpdatePeriod" ), m_tUpdateRate->GetValue());
     pConf->Write( _T ( "FilterSeconds" ), m_sFilterSeconds->GetValue());
+    pConf->Write( _T ( "RotationOffset" ), m_sRotationOffset->GetValue());
 
     pConf->SetPath ( _T( "/Settings" ) );
     bool brotate = pConf->Read( _T ( "EnableRotateKeys" ),  0L );
@@ -85,9 +87,10 @@ void PreferencesDialog::OnInformation( wxCommandEvent& event )
 {
     wxMessageDialog mdlg(this, _("\
 Advanced Control of the Viewport Rotation\n\n\
+Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n\
+Rotation offset allows Course right (90) Course down (180) etc...\n\n\
 Wind Up requires wind sensor via nmea data.\n\
-Heading Up Requires magnetic heading sensor via nmea data.\n\
-"),
+Heading Up Requires magnetic heading sensor via nmea data.\n"),
                          _("Rotation Control Information"), wxOK | wxICON_INFORMATION);
     mdlg.ShowModal();
 }

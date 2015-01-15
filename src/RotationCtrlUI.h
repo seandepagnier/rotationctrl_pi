@@ -49,6 +49,9 @@ class PreferencesDialogBase : public wxDialog
 		wxStaticText* m_staticText30;
 		wxSpinCtrl* m_sFilterSeconds;
 		wxStaticText* m_staticText31;
+		wxStaticText* m_staticText5;
+		wxSpinCtrl* m_sRotationOffset;
+		wxStaticText* m_staticText6;
 		wxCheckBox* m_cbRotationKeys;
 		wxButton* m_button6;
 		wxButton* m_button7;

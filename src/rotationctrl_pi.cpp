@@ -30,6 +30,14 @@
 #include "PreferencesDialog.h"
 #include "icons.h"
 
+static double heading_resolve(double radians)
+{
+    while(radians < 0)
+        radians += 2*M_PI;
+    while(radians >= 2*M_PI)
+        radians -= 2*M_PI;
+    return radians;
+}
 
 // the class factories, used to create and destroy instances of the PlugIn
 
@@ -54,10 +62,8 @@ rotationctrl_pi::rotationctrl_pi(void *ppimgr)
 {
     // Create the PlugIn icons
     initialize_images();
-    m_lastfix.Lat = NAN;
-    m_lasttimerfix.Lat = NAN;
-    m_sog = m_cog = 0;
-    m_heading = m_truewind = 0;
+    m_vp.rotation = 0;
+    Reset();
 }
 
 //---------------------------------------------------------------------------------------------------------
@@ -185,27 +191,25 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
         if(m_leftclick_tool_ids[i] == id) {
             switch(i) {
             case MANUAL_CCW:
-                m_vp.rotation += 3 * M_PI / 180;
-                SetViewport(m_vp);
+                SetRotation(m_vp.rotation + 3 * M_PI / 180);
                 break;
             case MANUAL_CW:
-                m_vp.rotation -= 3 * M_PI / 180;
-                SetViewport(m_vp);
+                SetRotation(m_vp.rotation - 3 * M_PI / 180);
                 break;
             case NORTH_UP:
-                m_vp.rotation = 0;
-                SetViewport(m_vp);
+                SetRotation(0);
                 break;
             case SOUTH_UP:
-                m_vp.rotation = M_PI;
-                SetViewport(m_vp);
+                SetRotation(M_PI);
                 break;
             case COURSE_UP:
             case HEADING_UP:
             case ROUTE_UP:
             case WIND_UP:
+                Reset();
                 SetToolbarItemState( id, true );
                 m_currenttool = i;
+                m_Timer.Start(1, true); // start right away
                 break;
             }
         } else
@@ -214,33 +218,24 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
 
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
-    if(m_currenttool == COURSE_UP) {
-        /* calculate course and speed over ground from gps */
-        double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
-        if(!isnan(m_lastfix.Lat) && !isnan(m_lasttimerfix.Lat) && dt > 0) {
-            /* this way helps avoid surge speed from gps from surfing waves etc... */
-            double cog, sog;
-            DistanceBearingMercator_Plugin(m_lastfix.Lat, m_lastfix.Lon,
-                                           m_lasttimerfix.Lat, m_lasttimerfix.Lon, &cog, &sog);
-            sog *= 3600.0 / dt;
-            
-            m_cog = FilterAngle(cog, m_cog);
-            m_sog = FilterSpeed(sog, m_sog);
-        } else
-            m_sog = m_cog = 0;
-    }
+    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
+
+    m_cog = FilterAngle(deg2rad(m_lastfix.Cog), m_cog);
+    m_sog = FilterSpeed(m_lastfix.Sog, m_sog);
     
     m_lasttimerfix = m_lastfix;
 
     switch(m_currenttool) {
-    case COURSE_UP:   m_vp.rotation = m_cog;  break;
-    case HEADING_UP:  m_vp.rotation = m_heading; break; // incomplete
+    case COURSE_UP:   m_vp.rotation = -m_cog;  break;
+    case HEADING_UP:  m_vp.rotation = -m_heading; break;
     case ROUTE_UP:    m_vp.rotation = 0; break; // incomplete
-    case WIND_UP:     m_vp.rotation = m_truewind; break; // incomplete
+    case WIND_UP:     m_vp.rotation = -m_truewind; break;
     }
 
+    m_vp.rotation += deg2rad(m_rotation_offset);
+
     if(m_currenttool)
-        SetViewport(m_vp);
+        SetRotation(m_vp.rotation);
 
     m_Timer.Start(m_filter_msecs, true);
 }
@@ -263,8 +258,18 @@ bool rotationctrl_pi::LoadConfig(void)
     SetToolbarToolViz(m_leftclick_tool_ids[ROUTE_UP], pConf->Read( _T ( "RouteUp" ), 0L));
     SetToolbarToolViz(m_leftclick_tool_ids[WIND_UP], pConf->Read( _T ( "WindUp" ), 0L));
 
-    m_filter_msecs = 1000.0 * pConf->Read( _T ( "UpdatePeriod" ), 5.0);
+    double filter_seconds = 5;
+    pConf->Read( _T ( "UpdatePeriod" ), _T("5")).ToDouble(&filter_seconds);
+    if(filter_seconds < .05) {
+        wxMessageDialog mdlg(NULL, _("Invalid update period, defaulting to 5 seconds"),
+                             _("Rotation Control Information"), wxOK | wxICON_INFORMATION);
+        mdlg.ShowModal();
+        filter_seconds = 5;
+    }
+
+    m_filter_msecs = 1000.0 * filter_seconds;
     m_filter_lp = m_filter_msecs / 1000.0 / pConf->Read( _T ( "FilterSeconds" ), 10.0);
+    m_rotation_offset = pConf->Read( _T ( "RotationOffset" ), 0L);
     
     return true;
 }
@@ -279,6 +284,17 @@ bool rotationctrl_pi::SaveConfig(void)
     pConf->SetPath ( _T ( "/Settings/Rotationctrl" ) );
 
     return true;
+}
+
+void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
+{
+    if(heading_resolve(m_vp.rotation - vp.rotation) > .001) {
+        for(int i=0; i<NUM_ROTATION_TOOLS; i++)
+            SetToolbarItemState( m_leftclick_tool_ids[i], false );
+        m_currenttool = 0;
+    }
+
+    m_vp = vp;    
 }
 
 void rotationctrl_pi::SetNMEASentence( wxString &sentence )
@@ -357,6 +373,20 @@ void rotationctrl_pi::SetNMEASentence( wxString &sentence )
 
 void rotationctrl_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 {
+#if 0
+    if(m_currenttool == COURSE_UP) {
+        /* calculate course and speed over ground from gps */
+        if(!isnan(m_lastfix.Lat) && !isnan(m_lasttimerfix.Lat)) {
+            /* this way helps avoid surge speed from gps from surfing waves etc... */
+            double cog, sog;
+            DistanceBearingMercator_Plugin(pfix.Lat, pfix.Lon,
+                                           m_lastfix.Lat, m_lastfix.Lon, &cog, &sog);
+            sog *= 3600.0 / dt;
+            cog *= M_PI / 180.0;
+        }
+    }
+#endif
+
     if(pfix.FixTime && pfix.nSats)
         m_LastFixTime = wxDateTime::Now();
 
@@ -365,8 +395,10 @@ void rotationctrl_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
 
 void rotationctrl_pi::ShowPreferencesDialog( wxWindow* parent )
 {
-    PreferencesDialog dlg(parent);
-    dlg.ShowModal();
+    {
+        PreferencesDialog dlg(parent);
+        dlg.ShowModal();
+    } // ensure preferences destructor before loadconfig
 
     LoadConfig();
 }
@@ -379,7 +411,7 @@ double rotationctrl_pi::FilterAngle(double input, double last)
     if(isnan(last))
         return input;
 
-    double x = sin(input), y = cos(input);
+     double x = sin(input), y = cos(input);
     double lx = sin(last), ly = cos(last);
 
     x = m_filter_lp*x + (1-m_filter_lp)*lx;
@@ -397,4 +429,12 @@ double rotationctrl_pi::FilterSpeed(double input, double last)
         return input;
 
     return m_filter_lp*input + (1-m_filter_lp)*last;
+}
+
+void rotationctrl_pi::Reset()
+{
+    m_lastfix.Lat = NAN;
+    m_lasttimerfix.Lat = NAN;
+    m_sog = m_cog = NAN;
+    m_heading = m_truewind = NAN;
 }

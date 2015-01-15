@@ -60,7 +60,7 @@
 #define isnan _isnan
 #define isinf(x) (!_finite(x) && !_isnan(x))
 
-inline double trunc(double d){ return (d>0) ? floor(d) : ceil(d) ; }
+inline double trunc(double d) { return (d>0) ? floor(d) : ceil(d) ; }
 inline double round(double n) { return n < 0.0 ? ceil(n - 0.5) : floor(n + 0.5); }
 
 # if !defined(snprintf)
@@ -71,6 +71,9 @@ inline double round(double n) { return n < 0.0 ? ceil(n - 0.5) : floor(n + 0.5);
 #define strncasecmp _strnicmp
 
 #endif
+
+inline double deg2rad(double degrees) { return M_PI * degrees / 180.0; }
+inline double rad2deg(double radians) { return 180.0 * radians / M_PI; }
 
 #include <nmea0183.h>
 
@@ -122,6 +125,7 @@ public:
 
       int m_filter_msecs;
       double m_filter_lp;
+      double m_rotation_offset;
 
       int               m_leftclick_tool_ids[NUM_ROTATION_TOOLS];
 
@@ -136,9 +140,11 @@ private:
       bool    LoadConfig(void);
       bool    SaveConfig(void);
 
-      void SetCurrentViewPort(PlugIn_ViewPort &vp) { m_vp = vp; }
+      void SetCurrentViewPort(PlugIn_ViewPort &vp);
       void SetNMEASentence( wxString &sentence );
       void    SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
+
+      void Reset();
 
       wxTimer m_Timer;
 
