@@ -24,8 +24,8 @@
  ***************************************************************************
  */
 
-#ifndef _WATCHMANPI_H_
-#define _WATCHMANPI_H_
+#ifndef _ROTATIONCTRLPI_H_
+#define _ROTATIONCTRLPI_H_
 
 #include "wx/wx.h"
 
@@ -108,6 +108,8 @@ public:
       int GetToolbarToolCount(void);
 
       void OnToolbarToolCallback(int id);
+      void OnToolbarToolDownCallback(int id);
+      void OnToolbarToolUpCallback(int id);
 
       void OnTimer( wxTimerEvent & );
 
@@ -157,6 +159,9 @@ private:
       int m_currenttool;
 
       NMEA0183 m_NMEA0183;
+
+      double m_rotation_dir;
+      wxDateTime m_last_rotation_time;
 };
 
 #endif

@@ -504,7 +504,9 @@ class DECL_EXP opencpn_plugin_113 : public opencpn_plugin_112
 public:
     opencpn_plugin_113(void *pmgr);
     virtual ~opencpn_plugin_113();
-    
+
+    virtual void OnToolbarToolDownCallback(int id);
+    virtual void OnToolbarToolUpCallback(int id);
 };
 
 //------------------------------------------------------------------
@@ -983,6 +985,6 @@ extern "C"  DECL_EXP void GetDoubleCanvasPixLL(PlugIn_ViewPort *vp, wxPoint2DDou
 
 
 /* API 1.13 Plugins to set the Rotation */
-extern DECL_EXP void SetRotation(double rotation);
+extern DECL_EXP void SetCanvasRotation(double rotation);
 
 #endif //_PLUGIN_H_

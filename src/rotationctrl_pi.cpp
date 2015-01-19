@@ -194,17 +194,11 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
     for(int i=0; i<NUM_ROTATION_TOOLS; i++)
         if(m_leftclick_tool_ids[i] == id) {
             switch(i) {
-            case MANUAL_CCW:
-                SetRotation(m_vp.rotation + 3 * M_PI / 180);
-                break;
-            case MANUAL_CW:
-                SetRotation(m_vp.rotation - 3 * M_PI / 180);
-                break;
             case NORTH_UP:
-                SetRotation(0);
+                SetCanvasRotation(0);
                 break;
             case SOUTH_UP:
-                SetRotation(M_PI);
+                SetCanvasRotation(M_PI);
                 break;
             case COURSE_UP:
             case HEADING_UP:
@@ -224,6 +218,33 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
         } else
             SetToolbarItemState( m_leftclick_tool_ids[i], false );
 }
+
+void rotationctrl_pi::OnToolbarToolDownCallback(int id)
+{
+    m_currenttool = 0;
+
+    for(int i=0; i<NUM_ROTATION_TOOLS; i++)
+        if(m_leftclick_tool_ids[i] == id) {
+            switch(i) {
+            case MANUAL_CCW:
+                m_rotation_dir = -1;
+                break;
+            case MANUAL_CW:
+                m_rotation_dir = 1;
+                break;
+            default: return;
+            }
+        }
+
+    m_last_rotation_time = wxDateTime::UNow();
+    RequestRefresh(GetOCPNCanvasWindow());
+}
+
+void rotationctrl_pi::OnToolbarToolUpCallback(int id)
+{
+    m_rotation_dir = 0;
+}
+
 
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
@@ -269,7 +290,7 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
     }
 
     m_vp.rotation += deg2rad(m_rotation_offset);
-    SetRotation(m_vp.rotation);
+    SetCanvasRotation(m_vp.rotation);
 
     m_Timer.Start(m_filter_msecs, true);
 }
@@ -330,7 +351,25 @@ void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
         m_currenttool = 0;
     }
 
-    m_vp = vp;    
+    m_vp = vp;
+
+    if(!m_rotation_dir)
+        return;
+
+    wxDateTime now = wxDateTime::UNow();
+    long dt = 0;
+    if(m_last_rotation_time.IsValid())
+        dt = (now - m_last_rotation_time).GetMilliseconds().ToLong();
+
+    if(dt > 500) /* if we are running very slow, don't integrate too fast */
+        dt = 500;
+    
+    int rotation_speed = wxGetMouseState().AltDown() ? 6 : 60;
+    
+    SetCanvasRotation(m_vp.rotation + m_rotation_dir * rotation_speed *
+                      M_PI / 180 * dt / 1000.0);
+    m_last_rotation_time = now;
+    RequestRefresh(GetOCPNCanvasWindow());
 }
 
 void rotationctrl_pi::SetNMEASentence( wxString &sentence )
@@ -494,4 +533,5 @@ void rotationctrl_pi::Reset()
     m_sog = m_cog = NAN;
     m_heading = m_truewind = NAN;
     m_route_heading = NAN;
+    m_rotation_dir = 0;
 }
