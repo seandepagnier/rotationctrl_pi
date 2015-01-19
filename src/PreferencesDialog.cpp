@@ -89,6 +89,7 @@ void PreferencesDialog::OnInformation( wxCommandEvent& event )
 Advanced Control of the Viewport Rotation\n\n\
 Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n\
 Rotation offset allows Course right (90) Course down (180) etc...\n\n\
+Route Up, activate a route or waypoint (right click navigate to)\n\
 Wind Up requires wind sensor via nmea data.\n\
 Heading Up Requires magnetic heading sensor via nmea data.\n"),
                          _("Rotation Control Information"), wxOK | wxICON_INFORMATION);

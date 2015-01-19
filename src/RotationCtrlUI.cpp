@@ -38,13 +38,13 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	m_cbSouthUp = new wxCheckBox( this, wxID_ANY, _("South Up"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbSouthUp, 0, wxALL, 5 );
 	
-	m_cbCourseUp = new wxCheckBox( this, wxID_ANY, _("Course Up  (From GPS)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbCourseUp = new wxCheckBox( this, wxID_ANY, _("Course Up  (from GPS)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbCourseUp, 0, wxALL, 5 );
 	
 	m_cbHeadingUp = new wxCheckBox( this, wxID_ANY, _("Heading Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbHeadingUp, 0, wxALL, 5 );
 	
-	m_cbRouteUp = new wxCheckBox( this, wxID_ANY, _("Route Up (To waypoint)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbRouteUp = new wxCheckBox( this, wxID_ANY, _("Route Up (to active waypoint)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbRouteUp, 0, wxALL, 5 );
 	
 	m_cbWindUp = new wxCheckBox( this, wxID_ANY, _("Wind Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );

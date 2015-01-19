@@ -26,6 +26,9 @@
 
 #include <wx/wx.h>
 
+#include "jsonreader.h"
+#include "jsonwriter.h"
+
 #include "rotationctrl_pi.h"
 #include "PreferencesDialog.h"
 #include "icons.h"
@@ -114,14 +117,15 @@ int rotationctrl_pi::Init(void)
     
     m_Timer.Connect(wxEVT_TIMER, wxTimerEventHandler
                     ( rotationctrl_pi::OnTimer ), NULL, this);
-    m_Timer.Start(m_filter_msecs, true);
 
-    return (WANTS_TOOLBAR_CALLBACK    |
-            WANTS_PREFERENCES         |
+    return (WANTS_TOOLBAR_CALLBACK |
+            WANTS_PREFERENCES      |
             WANTS_ONPAINT_VIEWPORT |
-            WANTS_NMEA_SENTENCES |
-            WANTS_NMEA_EVENTS         |
-            WANTS_CONFIG);
+            WANTS_NMEA_SENTENCES   |
+            WANTS_NMEA_EVENTS      |
+            WANTS_CONFIG           |
+            WANTS_PLUGIN_MESSAGING
+        );
 }
 
 bool rotationctrl_pi::DeInit(void)
@@ -206,10 +210,15 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
             case HEADING_UP:
             case ROUTE_UP:
             case WIND_UP:
-                Reset();
-                SetToolbarItemState( id, true );
-                m_currenttool = i;
-                m_Timer.Start(1, true); // start right away
+                if(m_currenttool == i) {
+                    SetToolbarItemState( id, false );
+                    m_Timer.Stop();
+                } else {
+                    Reset();
+                    SetToolbarItemState( id, true );
+                    m_currenttool = i;
+                    m_Timer.Start(1, true); // start right away
+                }
                 break;
             }
         } else
@@ -218,24 +227,49 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
 
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
-    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
+//    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
 
     m_cog = FilterAngle(deg2rad(m_lastfix.Cog), m_cog);
     m_sog = FilterSpeed(m_lastfix.Sog, m_sog);
     
-    m_lasttimerfix = m_lastfix;
+//    m_lasttimerfix = m_lastfix;
 
     switch(m_currenttool) {
     case COURSE_UP:   m_vp.rotation = -m_cog;  break;
     case HEADING_UP:  m_vp.rotation = -m_heading; break;
-    case ROUTE_UP:    m_vp.rotation = 0; break; // incomplete
+    case ROUTE_UP:
+    {
+        double lastlat = m_routewaypoint.m_lat;
+        double lastlon = m_routewaypoint.m_lon;
+        GetSingleWaypoint( m_routeguid, &m_routewaypoint );
+        if(lastlat != m_routewaypoint.m_lat ||
+           lastlon != m_routewaypoint.m_lon)
+            Reset();
+
+        double route_heading;
+        DistanceBearingMercator_Plugin
+            (m_routewaypoint.m_lat, m_routewaypoint.m_lon,
+             m_lastfix.Lat, m_lastfix.Lon,
+             &route_heading, NULL);
+
+        route_heading = deg2rad(route_heading);
+
+        if(isnan(m_route_heading))
+            m_route_heading = route_heading;
+
+        m_route_heading = FilterAngle(route_heading, m_route_heading);
+
+        if(isnan(m_route_heading))
+            return;
+
+        m_vp.rotation = -m_route_heading;
+    } break;
     case WIND_UP:     m_vp.rotation = -m_truewind; break;
+    default: return;
     }
 
     m_vp.rotation += deg2rad(m_rotation_offset);
-
-    if(m_currenttool)
-        SetRotation(m_vp.rotation);
+    SetRotation(m_vp.rotation);
 
     m_Timer.Start(m_filter_msecs, true);
 }
@@ -291,6 +325,8 @@ void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
     if(heading_resolve(m_vp.rotation - vp.rotation) > .001) {
         for(int i=0; i<NUM_ROTATION_TOOLS; i++)
             SetToolbarItemState( m_leftclick_tool_ids[i], false );
+
+        m_Timer.Stop();
         m_currenttool = 0;
     }
 
@@ -334,7 +370,7 @@ void rotationctrl_pi::SetNMEASentence( wxString &sentence )
        can use wmm plugin if only magnetic data is available as weell
        in the case of apparent wind, we need to compensate from speed as well (either water or gps), */
 
-#if 0 // Not let implemented
+#if 0 // Not yet implemented
 
         // NMEA 0183 standard Wind Speed and Angle, in relation to the vessel's bow/centerline.
         else if( m_NMEA0183.LastSentenceIDReceived == _T("MWV") ) {
@@ -393,6 +429,27 @@ void rotationctrl_pi::SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix)
     m_lastfix = pfix;
 }
 
+void rotationctrl_pi::SetPluginMessage(wxString &message_id, wxString &message_body)
+{
+    wxJSONReader r;
+    wxJSONValue v;
+
+    if(message_id == _T("OCPN_WPT_ACTIVATED"))
+    {
+        r.Parse(message_body, &v);
+        m_routeguid = v[_T("GUID")].AsString();
+        Reset();
+        m_Timer.Start(1, true); // start right away
+    }
+
+    if(message_id == _T("OCPN_WPT_ARRIVED"))
+    {
+        m_routeguid = v[_T("GUID")].AsString();
+        Reset();
+        m_Timer.Start(1, true); // start right away
+    }
+}
+
 void rotationctrl_pi::ShowPreferencesDialog( wxWindow* parent )
 {
     {
@@ -411,7 +468,7 @@ double rotationctrl_pi::FilterAngle(double input, double last)
     if(isnan(last))
         return input;
 
-     double x = sin(input), y = cos(input);
+    double x = sin(input), y = cos(input);
     double lx = sin(last), ly = cos(last);
 
     x = m_filter_lp*x + (1-m_filter_lp)*lx;
@@ -433,8 +490,8 @@ double rotationctrl_pi::FilterSpeed(double input, double last)
 
 void rotationctrl_pi::Reset()
 {
-    m_lastfix.Lat = NAN;
-    m_lasttimerfix.Lat = NAN;
+//    m_lastfix.Lat = NAN;
     m_sog = m_cog = NAN;
     m_heading = m_truewind = NAN;
+    m_route_heading = NAN;
 }

@@ -134,7 +134,7 @@ protected:
       double FilterAngle(double input, double last);
       double FilterSpeed(double input, double last);
 
-      PlugIn_Position_Fix_Ex m_lastfix, m_lasttimerfix;
+      PlugIn_Position_Fix_Ex m_lastfix; // m_lasttimerfix;
 
 private:
       bool    LoadConfig(void);
@@ -142,11 +142,16 @@ private:
 
       void SetCurrentViewPort(PlugIn_ViewPort &vp);
       void SetNMEASentence( wxString &sentence );
-      void    SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
+      void SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
+      void SetPluginMessage(wxString &message_id, wxString &message_body);
 
       void Reset();
 
       wxTimer m_Timer;
+      PlugIn_Waypoint m_routewaypoint;
+
+      double m_route_heading;
+      wxString m_routeguid;
 
       PlugIn_ViewPort m_vp;
       int m_currenttool;

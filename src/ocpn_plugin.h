@@ -705,6 +705,10 @@ extern DECL_EXP bool AddPlugInTrack( PlugIn_Track *ptrack, bool b_permanent = tr
 extern DECL_EXP bool DeletePlugInTrack( wxString& GUID );
 extern DECL_EXP bool UpdatePlugInTrack ( PlugIn_Track *ptrack );
 
+/* 1.13 adds */
+extern DECL_EXP bool GetSingleWaypoint( wxString &GUID, PlugIn_Waypoint *pwaypoint );
+
+
 /* API 1.11  */
 
 /* API 1.11  adds some more common functions to avoid unnecessary code duplication */

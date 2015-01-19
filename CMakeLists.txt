@@ -60,7 +60,15 @@ SET(SRC_NMEA0183
 )
 INCLUDE_DIRECTORIES(src/nmea0183)
 
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_ROTATIONCTRL} ${SRC_NMEA0183})
+IF(WIN32)
+SET(SRC_JSON
+	    src/jsonreader.cpp
+	    src/jsonval.cpp
+	    src/jsonwriter.cpp
+        )
+ENDIF(WIN32)
+
+ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_ROTATIONCTRL} ${SRC_NMEA0183} ${SRC_JSON})
 
 INCLUDE("cmake/PluginInstall.cmake")
 INCLUDE("cmake/PluginLocalization.cmake")
