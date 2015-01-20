@@ -280,9 +280,6 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
 
         m_route_heading = FilterAngle(route_heading, m_route_heading);
 
-        if(isnan(m_route_heading))
-            return;
-
         m_vp.rotation = -m_route_heading;
     } break;
     case WIND_UP:     m_vp.rotation = -m_truewind; break;
@@ -290,6 +287,10 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
     }
 
     m_vp.rotation += deg2rad(m_rotation_offset);
+
+    if(isnan(m_vp.rotation))
+        return;
+
     SetCanvasRotation(m_vp.rotation);
 
     m_Timer.Start(m_filter_msecs, true);
