@@ -190,21 +190,23 @@ void rotationctrl_pi::SetColorScheme(PI_ColorScheme cs)
 
 void rotationctrl_pi::OnToolbarToolCallback(int id)
 {
-    m_currenttool = 0;
     for(int i=0; i<NUM_ROTATION_TOOLS; i++)
         if(m_leftclick_tool_ids[i] == id) {
             switch(i) {
             case NORTH_UP:
                 SetCanvasRotation(0);
+                m_currenttool = 0;
                 break;
             case SOUTH_UP:
                 SetCanvasRotation(M_PI);
+                m_currenttool = 0;
                 break;
             case COURSE_UP:
             case HEADING_UP:
             case ROUTE_UP:
             case WIND_UP:
                 if(m_currenttool == i) {
+                    m_currenttool = 0;
                     SetToolbarItemState( id, false );
                     m_Timer.Stop();
                 } else {
@@ -221,8 +223,6 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
 
 void rotationctrl_pi::OnToolbarToolDownCallback(int id)
 {
-    m_currenttool = 0;
-
     for(int i=0; i<NUM_ROTATION_TOOLS; i++)
         if(m_leftclick_tool_ids[i] == id) {
             switch(i) {
@@ -245,7 +245,6 @@ void rotationctrl_pi::OnToolbarToolUpCallback(int id)
     m_rotation_dir = 0;
 }
 
-
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
 //    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
@@ -262,23 +261,24 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
     {
         double lastlat = m_routewaypoint.m_lat;
         double lastlon = m_routewaypoint.m_lon;
-        GetSingleWaypoint( m_routeguid, &m_routewaypoint );
-        if(lastlat != m_routewaypoint.m_lat ||
-           lastlon != m_routewaypoint.m_lon)
-            Reset();
+        if(GetSingleWaypoint( m_routeguid, &m_routewaypoint )) {
+            if(lastlat != m_routewaypoint.m_lat ||
+               lastlon != m_routewaypoint.m_lon)
+                Reset();
 
-        double route_heading;
-        DistanceBearingMercator_Plugin
-            (m_routewaypoint.m_lat, m_routewaypoint.m_lon,
-             m_lastfix.Lat, m_lastfix.Lon,
-             &route_heading, NULL);
+            double route_heading;
+            DistanceBearingMercator_Plugin
+                (m_routewaypoint.m_lat, m_routewaypoint.m_lon,
+                 m_lastfix.Lat, m_lastfix.Lon,
+                 &route_heading, NULL);
 
-        route_heading = deg2rad(route_heading);
+            route_heading = deg2rad(route_heading);
+            
+            if(isnan(m_route_heading))
+                m_route_heading = route_heading;
 
-        if(isnan(m_route_heading))
-            m_route_heading = route_heading;
-
-        m_route_heading = FilterAngle(route_heading, m_route_heading);
+            m_route_heading = FilterAngle(route_heading, m_route_heading);
+        }
 
         m_vp.rotation = -m_route_heading;
     } break;
