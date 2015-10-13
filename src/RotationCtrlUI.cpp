@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  8 2012)
+// C++ code generated with wxFormBuilder (version Oct 12 2015)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -26,11 +26,12 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	fgSizer241->SetFlexibleDirection( wxBOTH );
 	fgSizer241->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_cbManual = new wxCheckBox( this, wxID_ANY, _("Manual left and Right Buttons"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer241->Add( m_cbManual, 0, wxALL, 5 );
+	m_cbManualRotate = new wxCheckBox( this, wxID_ANY, _("Manual Rotate"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbManualRotate->SetValue(true); 
+	fgSizer241->Add( m_cbManualRotate, 0, wxALL, 5 );
 	
-	
-	fgSizer241->Add( 0, 0, 1, wxEXPAND, 5 );
+	m_cbManualTilt = new wxCheckBox( this, wxID_ANY, _("Manual Tilt"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer241->Add( m_cbManualTilt, 0, wxALL, 5 );
 	
 	m_cbNorthUp = new wxCheckBox( this, wxID_ANY, _("North Up"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbNorthUp, 0, wxALL, 5 );
@@ -144,7 +145,8 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	m_cbManual->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_cbManualRotate->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_cbManualTilt->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbNorthUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbSouthUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbCourseUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
@@ -162,7 +164,8 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 PreferencesDialogBase::~PreferencesDialogBase()
 {
 	// Disconnect Events
-	m_cbManual->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_cbManualRotate->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
+	m_cbManualTilt->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbNorthUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbSouthUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbCourseUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );

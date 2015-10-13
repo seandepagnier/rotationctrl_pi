@@ -89,6 +89,14 @@ int rotationctrl_pi::Init(void)
         (_T(""), _img_cw, _img_cw, wxITEM_NORMAL,
          _("Rotate CW"), _T(""), NULL, TOOL_POSITION, 0, this);
 
+    m_leftclick_tool_ids[MANUAL_TILTUP] = InsertPlugInTool
+        (_T(""), _img_tiltup, _img_tiltup, wxITEM_NORMAL,
+         _("Tilt Up"), _T(""), NULL, TOOL_POSITION, 0, this);
+
+    m_leftclick_tool_ids[MANUAL_TILTDOWN] = InsertPlugInTool
+        (_T(""), _img_tiltdown, _img_tiltdown, wxITEM_NORMAL,
+         _("Tilt Down"), _T(""), NULL, TOOL_POSITION, 0, this);
+    
     m_leftclick_tool_ids[NORTH_UP] = InsertPlugInTool
         (_T(""), _img_northup, _img_northup, wxITEM_NORMAL,
          _("North Up"), _T(""), NULL, TOOL_POSITION, 0, this);
@@ -232,6 +240,12 @@ void rotationctrl_pi::OnToolbarToolDownCallback(int id)
             case MANUAL_CW:
                 m_rotation_dir = 1;
                 break;
+            case MANUAL_TILTUP:
+                m_tilt_dir = -1;
+                break;
+            case MANUAL_TILTDOWN:
+                m_tilt_dir = 1;
+                break;
             default: return;
             }
         }
@@ -243,6 +257,7 @@ void rotationctrl_pi::OnToolbarToolDownCallback(int id)
 void rotationctrl_pi::OnToolbarToolUpCallback(int id)
 {
     m_rotation_dir = 0;
+    m_tilt_dir = 0;
 }
 
 void rotationctrl_pi::OnTimer( wxTimerEvent & )
@@ -305,8 +320,10 @@ bool rotationctrl_pi::LoadConfig(void)
 
     pConf->SetPath ( _T( "/Settings/RotationCtrl" ) );
 
-    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_CCW], pConf->Read( _T ( "Manual" ), 1L));
-    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_CW], pConf->Read( _T ( "Manual" ), 1L));
+    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_CCW], pConf->Read( _T ( "ManualRotate" ), 0L));
+    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_CW], pConf->Read( _T ( "ManualRotate" ), 0L));
+    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_TILTUP], pConf->Read( _T ( "ManualTilt" ), 0L));
+    SetToolbarToolViz(m_leftclick_tool_ids[MANUAL_TILTDOWN], pConf->Read( _T ( "ManualTilt" ), 0L));
     SetToolbarToolViz(m_leftclick_tool_ids[NORTH_UP], pConf->Read( _T ( "NorthUp" ), 1L));
     SetToolbarToolViz(m_leftclick_tool_ids[SOUTH_UP], pConf->Read( _T ( "SouthUp" ), 0L));
     SetToolbarToolViz(m_leftclick_tool_ids[COURSE_UP], pConf->Read( _T ( "CourseUp" ), 1L));
@@ -354,7 +371,7 @@ void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
 
     m_vp = vp;
 
-    if(!m_rotation_dir)
+    if(!m_rotation_dir && !m_tilt_dir)
         return;
 
     wxDateTime now = wxDateTime::UNow();
@@ -364,11 +381,13 @@ void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
 
     if(dt > 500) /* if we are running very slow, don't integrate too fast */
         dt = 500;
-    
+
     int rotation_speed = wxGetMouseState().AltDown() ? 6 : 60;
-    
     SetCanvasRotation(m_vp.rotation + m_rotation_dir * rotation_speed *
                       M_PI / 180 * dt / 1000.0);
+    SetCanvasTilt(GetCanvasTilt() + m_tilt_dir * rotation_speed *
+                      M_PI / 180 * dt / 1000.0);
+    
     m_last_rotation_time = now;
     RequestRefresh(GetOCPNCanvasWindow());
 }
@@ -535,4 +554,5 @@ void rotationctrl_pi::Reset()
     m_heading = m_truewind = NAN;
     m_route_heading = NAN;
     m_rotation_dir = 0;
+    m_tilt_dir = 0;
 }

@@ -83,8 +83,9 @@ inline double rad2deg(double radians) { return 180.0 * radians / M_PI; }
 
 #define TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-enum RotationTools {MANUAL_CCW, MANUAL_CW, NORTH_UP, SOUTH_UP, COURSE_UP,
-                    HEADING_UP, ROUTE_UP, WIND_UP, NUM_ROTATION_TOOLS};
+enum RotationTools {MANUAL_CCW, MANUAL_CW, MANUAL_TILTUP, MANUAL_TILTDOWN,
+                    NORTH_UP, SOUTH_UP, COURSE_UP, HEADING_UP,
+                    ROUTE_UP, WIND_UP, NUM_ROTATION_TOOLS};
 
 class rotationctrl_pi : public wxEvtHandler, public opencpn_plugin_113
 {
@@ -160,7 +161,7 @@ private:
 
       NMEA0183 m_NMEA0183;
 
-      double m_rotation_dir;
+      double m_rotation_dir, m_tilt_dir;
       wxDateTime m_last_rotation_time;
 };
 

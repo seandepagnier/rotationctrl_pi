@@ -33,7 +33,8 @@ PreferencesDialog::PreferencesDialog( wxWindow* parent)
     wxFileConfig *pConf = GetOCPNConfigObject();
     pConf->SetPath ( _T( "/Settings/RotationCtrl" ) );
 
-    m_cbManual->SetValue(pConf->Read( _T ( "Manual" ), 1L));
+    m_cbManualRotate->SetValue(pConf->Read( _T ( "ManualRotate" ), 0L));
+    m_cbManualTilt->SetValue(pConf->Read( _T ( "ManualTilt" ), 0L));
     m_cbNorthUp->SetValue(pConf->Read( _T ( "NorthUp" ), 1L));
     m_cbSouthUp->SetValue(pConf->Read( _T ( "SouthUp" ), 0L));
     m_cbCourseUp->SetValue(pConf->Read( _T ( "CourseUp" ), 1L));
@@ -58,7 +59,8 @@ PreferencesDialog::~PreferencesDialog()
 
     pConf->SetPath ( _T( "/Settings/RotationCtrl" ) );
 
-    pConf->Write( _T ( "Manual" ), m_cbManual->GetValue());
+    pConf->Write( _T ( "ManualRotate" ), m_cbManualRotate->GetValue());
+    pConf->Write( _T ( "ManualTilt" ), m_cbManualTilt->GetValue());
     pConf->Write( _T ( "NorthUp" ), m_cbNorthUp->GetValue());
     pConf->Write( _T ( "SouthUp" ), m_cbSouthUp->GetValue());
     pConf->Write( _T ( "CourseUp" ), m_cbCourseUp->GetValue());

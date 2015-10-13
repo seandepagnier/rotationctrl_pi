@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  8 2012)
+// C++ code generated with wxFormBuilder (version Oct 12 2015)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -36,7 +36,8 @@ class PreferencesDialogBase : public wxDialog
 	private:
 	
 	protected:
-		wxCheckBox* m_cbManual;
+		wxCheckBox* m_cbManualRotate;
+		wxCheckBox* m_cbManualTilt;
 		wxCheckBox* m_cbNorthUp;
 		wxCheckBox* m_cbSouthUp;
 		wxCheckBox* m_cbCourseUp;
