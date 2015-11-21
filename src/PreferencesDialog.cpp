@@ -33,21 +33,21 @@ PreferencesDialog::PreferencesDialog( wxWindow* parent)
     wxFileConfig *pConf = GetOCPNConfigObject();
     pConf->SetPath ( _T( "/Settings/RotationCtrl" ) );
 
-    m_cbManualRotate->SetValue(pConf->Read( _T ( "ManualRotate" ), 0L));
-    m_cbManualTilt->SetValue(pConf->Read( _T ( "ManualTilt" ), 0L));
-    m_cbNorthUp->SetValue(pConf->Read( _T ( "NorthUp" ), 1L));
-    m_cbSouthUp->SetValue(pConf->Read( _T ( "SouthUp" ), 0L));
-    m_cbCourseUp->SetValue(pConf->Read( _T ( "CourseUp" ), 1L));
-    m_cbHeadingUp->SetValue(pConf->Read( _T ( "HeadingUp" ), 0L));
-    m_cbRouteUp->SetValue(pConf->Read( _T ( "RouteUp" ), 0L));
-    m_cbWindUp->SetValue(pConf->Read( _T ( "WindUp" ), 0L));
+    m_cbManualRotate->SetValue((bool)pConf->Read( _T ( "ManualRotate" ), 0L));
+    m_cbManualTilt->SetValue((bool)pConf->Read( _T ( "ManualTilt" ), 0L));
+    m_cbNorthUp->SetValue((bool)pConf->Read( _T ( "NorthUp" ), 1L));
+    m_cbSouthUp->SetValue((bool)pConf->Read( _T ( "SouthUp" ), 0L));
+    m_cbCourseUp->SetValue((bool)pConf->Read( _T ( "CourseUp" ), 1L));
+    m_cbHeadingUp->SetValue((bool)pConf->Read( _T ( "HeadingUp" ), 0L));
+    m_cbRouteUp->SetValue((bool)pConf->Read( _T ( "RouteUp" ), 0L));
+    m_cbWindUp->SetValue((bool)pConf->Read( _T ( "WindUp" ), 0L));
 
     m_tUpdateRate->SetValue( pConf->Read( _T ( "UpdatePeriod" ), _T("5")));
     m_sFilterSeconds->SetValue( pConf->Read( _T ( "FilterSeconds" ), 10L));
     m_sRotationOffset->SetValue( pConf->Read( _T ( "RotationOffset" ), 0L));
 
     pConf->SetPath ( _T( "/Settings" ) );
-    m_cbRotationKeys->SetValue(pConf->Read( _T ( "EnableRotateKeys" ), 0L));
+    m_cbRotationKeys->SetValue((bool)pConf->Read( _T ( "EnableRotateKeys" ), 0L));
 }
 
 PreferencesDialog::~PreferencesDialog()
