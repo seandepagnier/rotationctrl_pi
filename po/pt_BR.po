@@ -1,87 +1,87 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the rotationctrl_pi package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: rotationctrl_pi 0.1\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-01-24 19:42-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Portuguese, Brazilian\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: pt-BR\n"
+"X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr ""
+msgstr "Habilitando/Desabilitando rotação através de [ ] / chaves requer reiniciar OpenCPN."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr ""
+msgstr "Informação de Controlo de Rotação"
 
 #: src/PreferencesDialog.cpp:90
-msgid ""
-"Advanced Control of the Viewport Rotation\n"
-"\n"
-"Set the Update period to a fraction (eg .2) for fast update, (this may use "
-"excessive cpu)\n"
-"Rotation offset allows Course right (90) Course down (180) etc...\n"
-"\n"
+msgid "Advanced Control of the Viewport Rotation\n\n"
+"Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n"
+"Rotation offset allows Course right (90) Course down (180) etc...\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr ""
+msgstr "Controlo Avançado de Rotação da Apresentação\n\n"
+"Active o período de atualização para uma fracção (ex: .2) para atualização rápida, (isto pode usar demasiado a cpu)\n"
+"O ajuste da rotação permite o Rumo para a direita (90) Rumo para baixo(180) etc...\n\n"
+"Rota para cima, activa a rota ou ponto de passagem (Botão direito do mouse e navega para)\n"
+"Vento para cima obriga a um sensor de vento via dados Nmea.\n"
+"Direção para cima obriga a um sensor de Direção magnetica via dados Nmea.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr ""
+msgstr "Ícones da barra de ferramentas"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr ""
+msgstr "Rotação manual"
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr ""
+msgstr "Inclinação manual"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr ""
+msgstr "Norte acima"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr ""
+msgstr "Sul para cima"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr ""
+msgstr "Curso para cima (do GPS)"
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
-msgstr ""
+msgstr "Direção para cima (NMEA)"
 
 #: src/RotationCtrlUI.cpp:48
 msgid "Route Up (to active waypoint)"
-msgstr ""
+msgstr "Rota para cima (para ponto de passagem ativo)"
 
 #: src/RotationCtrlUI.cpp:51
 msgid "Wind Up (NMEA)"
-msgstr ""
+msgstr "Vento para cima (NMEA)"
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr ""
+msgstr "Configurações de filtro dinâmico"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
-msgstr ""
+msgstr "Período de atualização"
 
 #: src/RotationCtrlUI.cpp:72
 msgid "5"
@@ -89,82 +89,83 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Segundos"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
-msgstr ""
+msgstr "Filtro sobre"
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr ""
+msgstr "Deslocamento de rotação"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Graus"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr ""
+msgstr "Ativar a rotação através de [ ] / chaves"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Informação"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Sobre o autor"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr ""
+msgstr "Preferências do Controlo de Rotação"
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr ""
+msgstr "Rodar CCW"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr ""
+msgstr "Gire CW"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
-msgstr ""
+msgstr "Inclinar para cima"
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr ""
+msgstr "Inclinar para baixo"
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
-msgstr ""
+msgstr "Curso acima"
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr ""
+msgstr "Proa para cima"
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
-msgstr ""
+msgstr "Rota para cima"
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr ""
+msgstr "Vento para cima"
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr ""
+msgstr "Controlo de Rotação"
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr ""
+msgstr "Plugin Controlo de Rotação para OpenCPN"
 
 #: src/rotationctrl_pi.cpp:186
-msgid ""
-"Rotation Control PlugIn for OpenCPN\n"
+msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr ""
+msgstr "Extensão de Controlo de Rotação para OpenCPN\n"
+"Avançado Controlo do ângulo de rotação da apresentação."
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr ""
+msgstr "Período de atualização inválido, padronizando para 5 segundos"
+
