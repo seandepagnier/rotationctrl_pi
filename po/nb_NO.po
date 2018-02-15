@@ -1,21 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the rotationctrl_pi package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: rotationctrl_pi 0.1\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-01-24 19:42-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Norwegian Bokmal\n"
+"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: nb\n"
+"X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
@@ -27,13 +26,9 @@ msgid "Rotation Control Information"
 msgstr ""
 
 #: src/PreferencesDialog.cpp:90
-msgid ""
-"Advanced Control of the Viewport Rotation\n"
-"\n"
-"Set the Update period to a fraction (eg .2) for fast update, (this may use "
-"excessive cpu)\n"
-"Rotation offset allows Course right (90) Course down (180) etc...\n"
-"\n"
+msgid "Advanced Control of the Viewport Rotation\n\n"
+"Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n"
+"Rotation offset allows Course right (90) Course down (180) etc...\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
@@ -41,47 +36,47 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr ""
+msgstr "Verktøylinjeikoner"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr ""
+msgstr "Manuell rotasjon"
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr ""
+msgstr "Manuell tilt"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr ""
+msgstr "Nord opp"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr ""
+msgstr "Sør opp"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr ""
+msgstr "Kurs opp (fra GPS)"
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
-msgstr ""
+msgstr "Heading opp (NMEA)"
 
 #: src/RotationCtrlUI.cpp:48
 msgid "Route Up (to active waypoint)"
-msgstr ""
+msgstr "Rute opp (til aktivt veipunkt)"
 
 #: src/RotationCtrlUI.cpp:51
 msgid "Wind Up (NMEA)"
-msgstr ""
+msgstr "Vind opp (NMEA)"
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr ""
+msgstr "Innstillinger for dynamisk filter"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
-msgstr ""
+msgstr "Oppdaterings periode"
 
 #: src/RotationCtrlUI.cpp:72
 msgid "5"
@@ -89,82 +84,82 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Sekunder"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
-msgstr ""
+msgstr "Filter over"
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr ""
+msgstr "Rotasjons forskyvning"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Grader"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr ""
+msgstr "Aktiver rotasjon via [ ] / taster"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Informasjon"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Om opphav"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr ""
+msgstr "Innstillinger for rotasjons kontroll"
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr ""
+msgstr "Roter mot klokken"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr ""
+msgstr "Roter med klokken"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
-msgstr ""
+msgstr "Tilt opp"
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr ""
+msgstr "Tilt ned"
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
-msgstr ""
+msgstr "Kurs opp"
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr ""
+msgstr "Heading opp"
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
-msgstr ""
+msgstr "Rute opp"
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr ""
+msgstr "Vind opp"
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr ""
+msgstr "Rotasjons kontroll"
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr ""
+msgstr "Rotasjons kontroll utvidelse for OpenCPN"
 
 #: src/rotationctrl_pi.cpp:186
-msgid ""
-"Rotation Control PlugIn for OpenCPN\n"
+msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
 msgstr ""
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr ""
+msgstr "Ugyldig oppdaterings periode, går tilbake til 5 sek."
+

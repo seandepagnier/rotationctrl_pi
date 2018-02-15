@@ -7,12 +7,16 @@
 # define minimum cmake version
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2)
 
+SET(VERBOSE_NAME RotationCtrl)
+SET(TITLE_NAME RotationCtrl)
 PROJECT(rotationctrl_pi)
 SET(PACKAGE_NAME rotationctrl_pi)
+SET(VERBOSE_NAME RotationCtrl)
+SET(TITLE_NAME ROTATIONCTRL)
 SET(CPACK_PACKAGE_CONTACT "Sean D'Epagnier ")
 
-SET(VERSION_MAJOR "0")
-SET(VERSION_MINOR "1")
+INCLUDE( VERSION.cmake )                                                                                      
+SET(PLUGIN_VERSION "${PLUGIN_VERSION_MAJOR}.${PLUGIN_VERSION_MINOR}.${PLUGIN_VERSION_PATCH}" )
 
 INCLUDE("cmake/PluginConfigure.cmake")
 

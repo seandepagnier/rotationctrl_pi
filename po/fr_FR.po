@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-25 09:49-0300\n"
+"PO-Revision-Date: 2018-02-15 13:05-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: fr\n"
+"X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
+
+#: src/PreferencesDialog.cpp:79
+msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
+msgstr "L'activation/désactivation de \"Rotation\" via la touche [] nécessite de redémarrer OpenCPN."
+
+#: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
+#: src/rotationctrl_pi.cpp:338
+msgid "Rotation Control Information"
+msgstr "Informations de contrôle de rotation"
+
+#: src/PreferencesDialog.cpp:90
+msgid "Advanced Control of the Viewport Rotation\n\n"
+"Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n"
+"Rotation offset allows Course right (90) Course down (180) etc...\n\n"
+"Route Up, activate a route or waypoint (right click navigate to)\n"
+"Wind Up requires wind sensor via nmea data.\n"
+"Heading Up Requires magnetic heading sensor via nmea data.\n"
+msgstr "Rotation avancée de la fenêtre  permet de\n\n"
+"Définir la période de mise à jour à une fraction (par exemple 0,2) pour la mise à jour rapide, (cela peut utiliser excessivement la cpu)\n"
+"Définir une rotation de 90° ou cap vers le bas (180°), etc. ..\n\n"
+"Définir la rotation pour qu'un waypoint soit en haut ou chaque segment d'une route aille vers le haut de l'écran\n"
+"Vent vers le haut ce qui exige des données NMEA en provenance d'un capteur de vent\n"
+"Nord magnétique vers haut ce qui exige des données NMEA en provenance du compas du bateau\n"
+
+#: src/RotationCtrlUI.cpp:22
+msgid "Toolbar Icons"
+msgstr "Barre d'icônes"
+
+#: src/RotationCtrlUI.cpp:29
+msgid "Manual Rotate"
+msgstr "Faire tourner manuelle"
+
+#: src/RotationCtrlUI.cpp:33
+msgid "Manual Tilt"
+msgstr "Incliner manuellement"
+
+#: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
+msgid "North Up"
+msgstr "Nord vers le haut"
+
+#: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
+msgid "South Up"
+msgstr "Sud vers le haut"
+
+#: src/RotationCtrlUI.cpp:42
+msgid "Course Up  (from GPS)"
+msgstr "Cap vers le haut (Du GPS)"
+
+#: src/RotationCtrlUI.cpp:45
+msgid "Heading Up (NMEA)"
+msgstr "Direction vers le haut (données NMEA)"
+
+#: src/RotationCtrlUI.cpp:48
+msgid "Route Up (to active waypoint)"
+msgstr "Route vers le haut (Vers le waypoint actif)"
+
+#: src/RotationCtrlUI.cpp:51
+msgid "Wind Up (NMEA)"
+msgstr "Vent vers le haut (selon données NMEA)"
+
+#: src/RotationCtrlUI.cpp:61
+msgid "Dynamic Filter Settings"
+msgstr "Préférences de filtrage dynamique"
+
+#: src/RotationCtrlUI.cpp:68
+msgid "Update Period"
+msgstr "Mettre à jour la période"
+
+#: src/RotationCtrlUI.cpp:72
+msgid "5"
+msgstr ""
+
+#: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
+msgid "Seconds"
+msgstr "Secondes"
+
+#: src/RotationCtrlUI.cpp:79
+msgid "Filter Over"
+msgstr "Filtre sur"
+
+#: src/RotationCtrlUI.cpp:90
+msgid "Rotation Offset"
+msgstr "Rotation arrêtée"
+
+#: src/RotationCtrlUI.cpp:97
+msgid "Degrees"
+msgstr "Degrés"
+
+#: src/RotationCtrlUI.cpp:107
+msgid "Enable Rotation via [ ] / Keys"
+msgstr "Activer la Rotation par l'intermédiaire de [] / touches"
+
+#: src/RotationCtrlUI.cpp:121
+msgid "Information"
+msgstr "Information"
+
+#: src/RotationCtrlUI.cpp:124
+msgid "About Author"
+msgstr "Au sujet de l'auteur"
+
+#: src/RotationCtrlUI.h:72
+msgid "Rotation Control Preferences"
+msgstr "Préférences des outils de \"Rotation\""
+
+#: src/rotationctrl_pi.cpp:86
+msgid "Rotate CCW"
+msgstr "Pivoter le CCW"
+
+#: src/rotationctrl_pi.cpp:90
+msgid "Rotate CW"
+msgstr "Pivoter le CW"
+
+#: src/rotationctrl_pi.cpp:94
+msgid "Tilt Up"
+msgstr "Incliner vers le haut"
+
+#: src/rotationctrl_pi.cpp:98
+msgid "Tilt Down"
+msgstr "Incliner vers le bas"
+
+#: src/rotationctrl_pi.cpp:110
+msgid "Course Up"
+msgstr "COG vers le haut"
+
+#: src/rotationctrl_pi.cpp:114
+msgid "Heading Up"
+msgstr "Direction vers le haut"
+
+#: src/rotationctrl_pi.cpp:118
+msgid "Route Up"
+msgstr "Route vers le haut"
+
+#: src/rotationctrl_pi.cpp:122
+msgid "Wind Up"
+msgstr "Vent vers le haut"
+
+#: src/rotationctrl_pi.cpp:176
+msgid "Rotation Control"
+msgstr "Outil de \"Rotation\""
+
+#: src/rotationctrl_pi.cpp:181
+msgid "Rotation Control PlugIn for OpenCPN"
+msgstr "Complément pour faire tourner la zone de carte d'OpenCPN"
+
+#: src/rotationctrl_pi.cpp:186
+msgid "Rotation Control PlugIn for OpenCPN\n"
+"Advanced control of the viewport rotation angle."
+msgstr "Complément \"Rotation\" pour OpenCPN\n"
+"Gestion avancée de l'angle d'affichage."
+
+#: src/rotationctrl_pi.cpp:337
+msgid "Invalid update period, defaulting to 5 seconds"
+msgstr "Période de mise à jour non valide, ou par défaut dans 5 secondes"
+

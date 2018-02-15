@@ -1,87 +1,87 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the rotationctrl_pi package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: rotationctrl_pi 0.1\n"
+"Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-01-29 21:29-0500\n"
+"Last-Translator: nohal <pavel@kalian.cz>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr ""
+msgstr "[] / Tuşlarıyla döndürmeyi etkinleştirme / devre dışı bırakma OpenCPN'yi yeniden başlatmayı gerektirir."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr ""
+msgstr "Döndürme Kontrolü Bilgileri"
 
 #: src/PreferencesDialog.cpp:90
-msgid ""
-"Advanced Control of the Viewport Rotation\n"
-"\n"
-"Set the Update period to a fraction (eg .2) for fast update, (this may use "
-"excessive cpu)\n"
-"Rotation offset allows Course right (90) Course down (180) etc...\n"
-"\n"
+msgid "Advanced Control of the Viewport Rotation\n\n"
+"Set the Update period to a fraction (eg .2) for fast update, (this may use excessive cpu)\n"
+"Rotation offset allows Course right (90) Course down (180) etc...\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr ""
+msgstr "Viewport Rotasının Gelişmiş Kontrolü\n\n"
+"Hızlı güncelleme için Güncelleme periyodunu bir kesire (örneğin .2) ayarlayın, (bu aşırı cpu kullanabilir)\n"
+"Döndürme ofseti doğu rotası(90) kıble rotası(180)vb.. izin verir.\n\n"
+"Route Up modu için bir rota veya waypoint etkinleştirin (sağa tıkla)\n"
+"Wind Up modu nmea verileri aracılığıyla rüzgar sensörünü gerektirir.\n"
+"Heading Up modu nmea verileri yoluyla manyetik yönlendirme sensörü gerektirir.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr ""
+msgstr "Araç Çubuğu Simgeleri"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr ""
+msgstr "Manuel Döndürme"
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr ""
+msgstr "Manuel Eğim"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr ""
+msgstr "Kuzeye çevir"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr ""
+msgstr "Güneye çevir"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr ""
+msgstr "Yukarı çek (GPS'den)"
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
-msgstr ""
+msgstr "Başa çek (NMEA)"
 
 #: src/RotationCtrlUI.cpp:48
 msgid "Route Up (to active waypoint)"
-msgstr ""
+msgstr "Güzergah Yukarı (etkin yol noktasına)"
 
 #: src/RotationCtrlUI.cpp:51
 msgid "Wind Up (NMEA)"
-msgstr ""
+msgstr "Başa döndür (NMEA)"
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr ""
+msgstr "Dinamik Filtre Ayarları"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
-msgstr ""
+msgstr "Süreyi Güncelle"
 
 #: src/RotationCtrlUI.cpp:72
 msgid "5"
@@ -89,82 +89,82 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Saniye"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
-msgstr ""
+msgstr "Filtre üzerinde"
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr ""
+msgstr "Döndürerek dengele"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Derece"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr ""
+msgstr "Döndürmeyi [] / Tuşları ile etkinleştirin"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Bilgi"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Yazar Hakkında"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr ""
+msgstr "Döndürme Kontrolü Tercihleri"
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr ""
+msgstr "Sola Döndür"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr ""
+msgstr "CW'yi döndür"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
-msgstr ""
+msgstr "Yukarı Eğin"
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr ""
+msgstr "Aşağı Eğin"
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
-msgstr ""
+msgstr "Yukarı"
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr ""
+msgstr "Başa"
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
-msgstr ""
+msgstr "Yukarı Rota"
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr ""
+msgstr "Başa döndür"
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr ""
+msgstr "Dönme Kontrolü"
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr ""
+msgstr "OpenCPN için Döndürme Kontrol Eklentisi"
 
 #: src/rotationctrl_pi.cpp:186
-msgid ""
-"Rotation Control PlugIn for OpenCPN\n"
+msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr ""
+msgstr "OpenCPN için Döndürme Kontrol Eklentis ile dönüş açısını ileri düzeyde kontrol edebilirsiniz."
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr ""
+msgstr "Geçersiz güncelleme süresi, varsayılan olarak 5 saniyedir"
+
