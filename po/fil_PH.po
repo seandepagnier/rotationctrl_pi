@@ -3,27 +3,27 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: 2018-03-03 08:25-0500\n"
+"PO-Revision-Date: 2018-03-04 05:54-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Spanish\n"
-"Language: es_ES\n"
+"Language-Team: Filipino\n"
+"Language: fil_PH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-Language: fil\n"
 "X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr "Activación/desactivación Rotación vía [] / teclas requiere reiniciar OpenCPN."
+msgstr "I-enable/i- disable ang rotasyon gamit [ ] / keys na kinakaylangan upang i restart ang OpenCPN."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr "Información de Control de rotación"
+msgstr "Impormasyon Sa control ng rostasyon"
 
 #: src/PreferencesDialog.cpp:90
 msgid "Advanced Control of the Viewport Rotation\n\n"
@@ -32,60 +32,60 @@ msgid "Advanced Control of the Viewport Rotation\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr "Control avanzado del punto de vista de la Rotación\n\n"
-"Establezca el período de actualización a una fracción (por ejemplo ,2) para actualización rápida, (esto puede utilizar excesivo tiempo de CPU)\n"
-"Los ajuste de Rotación permiten establecer Rumbo derecho (90º) Rumbo hacia abajo (180º) etc.... \n\n"
-"Ruta arriba, activar una ruta o waypoint (haga clic en Navegar a) \n"
-"Viento arriba requiere sensor de viento vía datos NMEA.\n"
-"Rumbo aguja requiere sensor de rumbo magnético vía datos NMEA.\n"
+msgstr "Advance na kontrol ng rotasyon ng viewport\n\n"
+"I-set ang hangganan ng update sa bahagdan (eg.2) para sa mabilis na update, (ito ay maaaring gumamit ng sobrang lakas cpu)\n"
+"Ang offset ng rotasyon ay pumapayag sa rutang kanan (90) rutang pababa (180) etc...\n\n"
+"Ruta pataas, i-activate ang ruta o daraanan (right click at pumunta)\n"
+"Wind up ay nangangailangan ng sensor gamit ang nmea data.\n"
+"Heading up ay nangangailangan ng magnetic heading sensor gamit ang nmea data.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr "Barra de Iconos"
+msgstr "Mga icon ng toolbar"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr "Manual de Rotación"
+msgstr "Manwal na pikutin"
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr "Inclinación manual"
+msgstr "Manwal na i-tilt"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr "Norte Arriba"
+msgstr "Hilagang paitaas"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr "Sur arriba"
+msgstr "Timog pababa"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr "Rumbo arriba (de GPS)"
+msgstr "Ruta pataas (mula sa GPS)"
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
-msgstr "Rumbo aguja arriba (NMEA)"
+msgstr "Papunta sa taas (NMEA)"
 
 #: src/RotationCtrlUI.cpp:48
 msgid "Route Up (to active waypoint)"
-msgstr "Ruta arriba (a waypoint activo)"
+msgstr "Ruta pataas (patungo sa aktibong puntahan)"
 
 #: src/RotationCtrlUI.cpp:51
 msgid "Wind Up (NMEA)"
-msgstr "Viento arriba (NMEA)"
+msgstr "Wind up (NMEA)"
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr "Configuración Filtro Dinámico"
+msgstr "Mga pagpipilian para sa synamic filter"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
-msgstr "Período de actualización"
+msgstr "Panahon ng pagupdate"
 
 #: src/RotationCtrlUI.cpp:72
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
@@ -93,79 +93,79 @@ msgstr "Segundos"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
-msgstr "Filtro sobre"
+msgstr "Filter sa"
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr "Desplazamiento de rotación"
+msgstr "Ofest ng pagikot"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr "Grados"
+msgstr "Digris"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr "Permitir Rotación vía [] / teclas"
+msgstr "Paganahin ang rotasyon gamit [ ] / Keys"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr "Información"
+msgstr "Impormasyon"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr "Sobre el autor"
+msgstr "Tungkol sa may-akda"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr "Preferencias de Control de Rotación"
+msgstr "Mga pagpipilian sa rotation kontrol"
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr "Girar CCW"
+msgstr "Ikutin CCW"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr "Girar CW"
+msgstr "Ikutin CW"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
-msgstr "Inclinar hacia arriba"
+msgstr "Ikiling pataas"
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr "Inclinar hacia abajo"
+msgstr "Ikiling pababa"
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
-msgstr "Rumbo Arriba"
+msgstr "Ruta pataas"
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr "Rumbo aguja arriba"
+msgstr "Patungo sa taas"
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
-msgstr "Ruta arriba"
+msgstr "Ruta pataas"
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr "Viento arriba"
+msgstr "Wind up"
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr "Control de Rotación"
+msgstr "Kontrol sa rotasyon"
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr "PlugIn de Control de Rotación para OpenCPN"
+msgstr "Rotation Control PlugIn para sa OpenCPN"
 
 #: src/rotationctrl_pi.cpp:186
 msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr "PlugIn de Control de Rotación para OpenCPN\n"
-"Control avanzado del ángulo de rotación del punto de visión."
+msgstr "Rotation Control PlugIn para sa OpenCPN\n"
+"Advance na kontrol ng rotasyon ng viewport angle."
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr "Período de actualización no válida, estableciendo a 5 segundos"
+msgstr "Imbalidong panahon ng pagupdate, bumabalik sa dati sa sa loob ng 5 segundos"
 

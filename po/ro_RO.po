@@ -5,25 +5,25 @@ msgstr ""
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
 "PO-Revision-Date: 2018-03-03 08:25-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Spanish\n"
-"Language: es_ES\n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-Language: ro\n"
 "X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr "Activación/desactivación Rotación vía [] / teclas requiere reiniciar OpenCPN."
+msgstr ""
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr "Información de Control de rotación"
+msgstr ""
 
 #: src/PreferencesDialog.cpp:90
 msgid "Advanced Control of the Viewport Rotation\n\n"
@@ -32,56 +32,51 @@ msgid "Advanced Control of the Viewport Rotation\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr "Control avanzado del punto de vista de la Rotación\n\n"
-"Establezca el período de actualización a una fracción (por ejemplo ,2) para actualización rápida, (esto puede utilizar excesivo tiempo de CPU)\n"
-"Los ajuste de Rotación permiten establecer Rumbo derecho (90º) Rumbo hacia abajo (180º) etc.... \n\n"
-"Ruta arriba, activar una ruta o waypoint (haga clic en Navegar a) \n"
-"Viento arriba requiere sensor de viento vía datos NMEA.\n"
-"Rumbo aguja requiere sensor de rumbo magnético vía datos NMEA.\n"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr "Barra de Iconos"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr "Manual de Rotación"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr "Inclinación manual"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr "Norte Arriba"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr "Sur arriba"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr "Rumbo arriba (de GPS)"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
-msgstr "Rumbo aguja arriba (NMEA)"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:48
 msgid "Route Up (to active waypoint)"
-msgstr "Ruta arriba (a waypoint activo)"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:51
 msgid "Wind Up (NMEA)"
-msgstr "Viento arriba (NMEA)"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr "Configuración Filtro Dinámico"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
-msgstr "Período de actualización"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:72
 msgid "5"
@@ -89,83 +84,82 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr "Segundos"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
-msgstr "Filtro sobre"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr "Desplazamiento de rotación"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr "Grados"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr "Permitir Rotación vía [] / teclas"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr "Información"
+msgstr ""
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr "Sobre el autor"
+msgstr ""
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr "Preferencias de Control de Rotación"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr "Girar CCW"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr "Girar CW"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
-msgstr "Inclinar hacia arriba"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr "Inclinar hacia abajo"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
-msgstr "Rumbo Arriba"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr "Rumbo aguja arriba"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
-msgstr "Ruta arriba"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr "Viento arriba"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr "Control de Rotación"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr "PlugIn de Control de Rotación para OpenCPN"
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:186
 msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr "PlugIn de Control de Rotación para OpenCPN\n"
-"Control avanzado del ángulo de rotación del punto de visión."
+msgstr ""
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr "Período de actualización no válida, estableciendo a 5 segundos"
+msgstr ""
 
