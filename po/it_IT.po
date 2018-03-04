@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: 2017-12-08 15:24-0500\n"
+"PO-Revision-Date: 2018-03-04 05:54-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -32,7 +32,12 @@ msgid "Advanced Control of the Viewport Rotation\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr ""
+msgstr "Controllo Avanzato della Rotazione del Viewport\n\n"
+"Impostare il Periodo di aggiornamento su una frazione (ad es .2) per un aggiornamento rapido, (questo potrebbe utilizzare la CPU eccessivamente)\n"
+"L'offset di Rotazione consente di Girare a destra (90) Girare giù (180) etc ... \n\n"
+"Instradarsi, attivare una rotta o un waypoint (fai clic con il pulsante destro del mouse su 'navigare verso')\n"
+"Wind Up richiede il sensore del vento tramite i dati nmea.\n"
+"Heading Up Richiede un sensore di direzione magnetico tramite i dati di nmea.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
@@ -84,7 +89,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Secondi"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
@@ -96,7 +101,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Gradi"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
@@ -104,11 +109,11 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Informazioni"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Sull'autore"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"

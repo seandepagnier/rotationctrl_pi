@@ -3,27 +3,27 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: 2016-02-25 08:03-0500\n"
+"PO-Revision-Date: 2018-03-04 05:54-0500\n"
 "Last-Translator: nohal <pavel@kalian.cz>\n"
-"Language-Team: Catalan\n"
-"Language: ca_ES\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
-"X-Crowdin-Language: ca\n"
+"X-Crowdin-Language: id\n"
 "X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr ""
+msgstr "Mengaktifkan / Menonaktifkan rotasi melalui [] / tombol memerlukan restart OpenCPN."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr ""
+msgstr "Informasi Kontrol Rotasi"
 
 #: src/PreferencesDialog.cpp:90
 msgid "Advanced Control of the Viewport Rotation\n\n"
@@ -32,11 +32,16 @@ msgid "Advanced Control of the Viewport Rotation\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr ""
+msgstr "Kontrol Lanjutan Rotasi Viewport\n\n"
+" Setel periode Update menjadi fraksi (misalnya .2) untuk pembaruan cepat (mungkin menggunakan cpu berlebihan)\n"
+" Rotasi offset memungkinkan Kursus yang benar (90) Kursus turun (180), dll. ..\n\n"
+" Rute ke atas, aktifkan rute atau titik arah (klik kanan navigasikan ke)\n"
+" Wind Up memerlukan sensor angin melalui data nmea.\n"
+" Heading Up Membutuhkan sensor pos magnetik melalui data yang nmea.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr ""
+msgstr "Ikon Toolbar"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
@@ -44,15 +49,15 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr ""
+msgstr "Kemiringan Manual"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr ""
+msgstr "Utara Atas"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr ""
+msgstr "Selatan atas"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
@@ -72,7 +77,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr ""
+msgstr "Pengaturan Filter Dinamis"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
@@ -84,7 +89,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Detik"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
@@ -92,35 +97,35 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr ""
+msgstr "Putaran rotasi"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Derajat"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr ""
+msgstr "Aktifkan Rotasi melalui [] / Tombol"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Informasi"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Tentang penulis"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
-msgstr ""
+msgstr "Preferensi Kontrol Rotasi"
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr ""
+msgstr "Putar CCW"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr ""
+msgstr "Putar CW"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
@@ -128,7 +133,7 @@ msgstr ""
 
 #: src/rotationctrl_pi.cpp:98
 msgid "Tilt Down"
-msgstr ""
+msgstr "Miring ke bawah"
 
 #: src/rotationctrl_pi.cpp:110
 msgid "Course Up"
@@ -136,7 +141,7 @@ msgstr ""
 
 #: src/rotationctrl_pi.cpp:114
 msgid "Heading Up"
-msgstr ""
+msgstr "Menuju"
 
 #: src/rotationctrl_pi.cpp:118
 msgid "Route Up"
@@ -144,22 +149,23 @@ msgstr ""
 
 #: src/rotationctrl_pi.cpp:122
 msgid "Wind Up"
-msgstr ""
+msgstr "Menyelesaikan"
 
 #: src/rotationctrl_pi.cpp:176
 msgid "Rotation Control"
-msgstr ""
+msgstr "Kontrol Rotasi"
 
 #: src/rotationctrl_pi.cpp:181
 msgid "Rotation Control PlugIn for OpenCPN"
-msgstr ""
+msgstr "Plugin Kontrol Rotasi untuk OpenCPN"
 
 #: src/rotationctrl_pi.cpp:186
 msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr ""
+msgstr "Plugin Kontrol Rotasi untuk OpenCPN\n"
+"Kontrol lanjutan pada sudut pandang viewport."
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
-msgstr ""
+msgstr "Periode pembaruan tidak valid, default hingga 5 detik"
 
