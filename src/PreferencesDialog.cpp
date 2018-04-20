@@ -42,8 +42,9 @@ PreferencesDialog::PreferencesDialog( wxWindow* parent)
     m_cbRouteUp->SetValue((bool)pConf->Read( _T ( "RouteUp" ), 0L));
     m_cbWindUp->SetValue((bool)pConf->Read( _T ( "WindUp" ), 0L));
 
-    m_tUpdateRate->SetValue( pConf->Read( _T ( "UpdatePeriod" ), _T("5")));
-    m_sFilterSeconds->SetValue( pConf->Read( _T ( "FilterSeconds" ), 10L));
+    m_sUpdateRate->SetValue( pConf->ReadDouble( _T ( "UpdateRate" ), 3.0));
+    m_sFilterSeconds->SetValue( pConf->Read( _T ( "FilterSeconds" ), 5L));
+    m_sMaxSlewRate->SetValue( pConf->ReadDouble( _T ( "MaxSlewRate" ), 5.0));
     m_sRotationOffset->SetValue( pConf->Read( _T ( "RotationOffset" ), 0L));
 
     pConf->SetPath ( _T( "/Settings" ) );
@@ -68,8 +69,9 @@ PreferencesDialog::~PreferencesDialog()
     pConf->Write( _T ( "RouteUp" ), m_cbRouteUp->GetValue());
     pConf->Write( _T ( "WindUp" ), m_cbWindUp->GetValue());
 
-    pConf->Write( _T ( "UpdatePeriod" ), m_tUpdateRate->GetValue());
+    pConf->Write( _T ( "UpdateRate" ), m_sUpdateRate->GetValue());
     pConf->Write( _T ( "FilterSeconds" ), m_sFilterSeconds->GetValue());
+    pConf->Write( _T ( "MaxSlewRate" ), m_sMaxSlewRate->GetValue());
     pConf->Write( _T ( "RotationOffset" ), m_sRotationOffset->GetValue());
 
     pConf->SetPath ( _T( "/Settings" ) );

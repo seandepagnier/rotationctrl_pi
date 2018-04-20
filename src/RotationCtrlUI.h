@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct 12 2015)
+// C++ code generated with wxFormBuilder (version Feb 20 2018)
 // http://www.wxformbuilder.org/
 //
-// PLEASE DO "NOT" EDIT THIS FILE!
+// PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
 #ifndef __ROTATIONCTRLUI_H__
@@ -20,7 +20,6 @@
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/stattext.h>
-#include <wx/textctrl.h>
 #include <wx/spinctrl.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
@@ -45,11 +44,14 @@ class PreferencesDialogBase : public wxDialog
 		wxCheckBox* m_cbRouteUp;
 		wxCheckBox* m_cbWindUp;
 		wxStaticText* m_staticText28;
-		wxTextCtrl* m_tUpdateRate;
+		wxSpinCtrlDouble* m_sUpdateRate;
 		wxStaticText* m_staticText29;
 		wxStaticText* m_staticText30;
 		wxSpinCtrl* m_sFilterSeconds;
 		wxStaticText* m_staticText31;
+		wxStaticText* m_staticText7;
+		wxSpinCtrlDouble* m_sMaxSlewRate;
+		wxStaticText* m_staticText8;
 		wxStaticText* m_staticText5;
 		wxSpinCtrl* m_sRotationOffset;
 		wxStaticText* m_staticText6;

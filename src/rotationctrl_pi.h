@@ -128,7 +128,9 @@ public:
 
       int m_filter_msecs;
       double m_filter_lp;
+      double m_max_slew_rate;
       double m_rotation_offset;
+      bool m_bSlewRefresh;
 
       int               m_leftclick_tool_ids[NUM_ROTATION_TOOLS];
 
@@ -148,6 +150,8 @@ private:
       void SetPositionFixEx(PlugIn_Position_Fix_Ex &pfix);
       void SetPluginMessage(wxString &message_id, wxString &message_body);
 
+      double Declination();
+
       void Reset();
 
       wxTimer m_Timer;
@@ -163,6 +167,10 @@ private:
 
       double m_rotation_dir, m_tilt_dir;
       wxDateTime m_last_rotation_time;
+
+      double m_declination;
+      wxDateTime m_declinationTime;
+      wxDateTime m_declinationRequestTime;
 };
 
 #endif

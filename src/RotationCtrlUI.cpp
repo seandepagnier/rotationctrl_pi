@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct 12 2015)
+// C++ code generated with wxFormBuilder (version Feb 20 2018)
 // http://www.wxformbuilder.org/
 //
-// PLEASE DO "NOT" EDIT THIS FILE!
+// PLEASE DO *NOT* EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
 #include "RotationCtrlUI.h"
@@ -26,29 +26,29 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	fgSizer241->SetFlexibleDirection( wxBOTH );
 	fgSizer241->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_cbManualRotate = new wxCheckBox( this, wxID_ANY, _("Manual Rotate"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbManualRotate = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Manual Rotate"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_cbManualRotate->SetValue(true); 
 	fgSizer241->Add( m_cbManualRotate, 0, wxALL, 5 );
 	
-	m_cbManualTilt = new wxCheckBox( this, wxID_ANY, _("Manual Tilt"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbManualTilt = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Manual Tilt"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbManualTilt, 0, wxALL, 5 );
 	
-	m_cbNorthUp = new wxCheckBox( this, wxID_ANY, _("North Up"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbNorthUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("North Up"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbNorthUp, 0, wxALL, 5 );
 	
-	m_cbSouthUp = new wxCheckBox( this, wxID_ANY, _("South Up"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbSouthUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("South Up"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbSouthUp, 0, wxALL, 5 );
 	
-	m_cbCourseUp = new wxCheckBox( this, wxID_ANY, _("Course Up  (from GPS)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbCourseUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Course Up  (from GPS)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbCourseUp, 0, wxALL, 5 );
 	
-	m_cbHeadingUp = new wxCheckBox( this, wxID_ANY, _("Heading Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbHeadingUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Heading Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbHeadingUp, 0, wxALL, 5 );
 	
-	m_cbRouteUp = new wxCheckBox( this, wxID_ANY, _("Route Up (to active waypoint)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbRouteUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Route Up (to active waypoint)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbRouteUp, 0, wxALL, 5 );
 	
-	m_cbWindUp = new wxCheckBox( this, wxID_ANY, _("Wind Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbWindUp = new wxCheckBox( sbSizer41->GetStaticBox(), wxID_ANY, _("Wind Up (NMEA)"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer241->Add( m_cbWindUp, 0, wxALL, 5 );
 	
 	
@@ -65,36 +65,47 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_staticText28 = new wxStaticText( this, wxID_ANY, _("Update Period"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText28 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Update Rate"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText28->Wrap( -1 );
 	fgSizer6->Add( m_staticText28, 0, wxALL, 5 );
 	
-	m_tUpdateRate = new wxTextCtrl( this, wxID_ANY, _("5"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer6->Add( m_tUpdateRate, 0, wxALL, 5 );
+	m_sUpdateRate = new wxSpinCtrlDouble( sbSizer4->GetStaticBox(), wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.05, 60, 5.000000, 0.05 );
+	fgSizer6->Add( m_sUpdateRate, 0, wxALL, 5 );
 	
-	m_staticText29 = new wxStaticText( this, wxID_ANY, _("Seconds"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText29 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Seconds"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText29->Wrap( -1 );
 	fgSizer6->Add( m_staticText29, 0, wxALL, 5 );
 	
-	m_staticText30 = new wxStaticText( this, wxID_ANY, _("Filter Over"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText30 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Filter Over"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText30->Wrap( -1 );
 	fgSizer6->Add( m_staticText30, 0, wxALL, 5 );
 	
-	m_sFilterSeconds = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 100, 10 );
+	m_sFilterSeconds = new wxSpinCtrl( sbSizer4->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 100, 10 );
 	fgSizer6->Add( m_sFilterSeconds, 0, wxALL, 5 );
 	
-	m_staticText31 = new wxStaticText( this, wxID_ANY, _("Seconds"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText31 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Seconds"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText31->Wrap( -1 );
 	fgSizer6->Add( m_staticText31, 0, wxALL, 5 );
 	
-	m_staticText5 = new wxStaticText( this, wxID_ANY, _("Rotation Offset"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Max Slew Rate"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText7->Wrap( -1 );
+	fgSizer6->Add( m_staticText7, 0, wxALL, 5 );
+	
+	m_sMaxSlewRate = new wxSpinCtrlDouble( sbSizer4->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0.25, 30, 1, 0.25 );
+	fgSizer6->Add( m_sMaxSlewRate, 0, wxALL, 5 );
+	
+	m_staticText8 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Degrees per frame"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	fgSizer6->Add( m_staticText8, 0, wxALL, 5 );
+	
+	m_staticText5 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Rotation Offset"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText5->Wrap( -1 );
 	fgSizer6->Add( m_staticText5, 0, wxALL, 5 );
 	
-	m_sRotationOffset = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 359, 0 );
+	m_sRotationOffset = new wxSpinCtrl( sbSizer4->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 359, 0 );
 	fgSizer6->Add( m_sRotationOffset, 0, wxALL, 5 );
 	
-	m_staticText6 = new wxStaticText( this, wxID_ANY, _("Degrees"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText6 = new wxStaticText( sbSizer4->GetStaticBox(), wxID_ANY, _("Degrees"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText6->Wrap( -1 );
 	fgSizer6->Add( m_staticText6, 0, wxALL, 5 );
 	
@@ -153,7 +164,6 @@ PreferencesDialogBase::PreferencesDialogBase( wxWindow* parent, wxWindowID id, c
 	m_cbHeadingUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRouteUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbWindUp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
-	m_tUpdateRate->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sFilterSeconds->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sRotationOffset->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRotationKeys->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigureKeys ), NULL, this );
@@ -172,7 +182,6 @@ PreferencesDialogBase::~PreferencesDialogBase()
 	m_cbHeadingUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRouteUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbWindUp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
-	m_tUpdateRate->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sFilterSeconds->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_sRotationOffset->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( PreferencesDialogBase::OnConfigure ), NULL, this );
 	m_cbRotationKeys->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( PreferencesDialogBase::OnConfigureKeys ), NULL, this );

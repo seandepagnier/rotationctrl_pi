@@ -5,7 +5,7 @@
  * Author:   Sean D'Epagnier
  *
  ***************************************************************************
- *   Copyright (C) 2015 by Sean D'Epagnier                                 *
+ *   Copyright (C) 2018 by Sean D'Epagnier                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,13 +33,13 @@
 #include "PreferencesDialog.h"
 #include "icons.h"
 
-static double heading_resolve(double radians)
+static double heading_resolve(double degrees, double offset = 180)
 {
-    while(radians < 0)
-        radians += 2*M_PI;
-    while(radians >= 2*M_PI)
-        radians -= 2*M_PI;
-    return radians;
+    while(degrees < -180 + offset)
+        degrees += 360;
+    while(degrees >= 180 + offset)
+        degrees -= 360;
+    return degrees;
 }
 
 // the class factories, used to create and destroy instances of the PlugIn
@@ -66,6 +66,10 @@ rotationctrl_pi::rotationctrl_pi(void *ppimgr)
     // Create the PlugIn icons
     initialize_images();
     m_vp.rotation = 0;
+    m_declination = 0;
+    m_sog = m_cog = 0;
+    m_heading = m_truewind = 0;
+    m_route_heading = 0;
     Reset();
 }
 
@@ -122,7 +126,8 @@ int rotationctrl_pi::Init(void)
          _("Wind Up"), _T(""), NULL, TOOL_POSITION, 0, this);
 
     LoadConfig(); //    And load the configuration items
-    
+    m_bSlewRefresh = false;
+
     m_Timer.Connect(wxEVT_TIMER, wxTimerEventHandler
                     ( rotationctrl_pi::OnTimer ), NULL, this);
 
@@ -264,14 +269,15 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
 //    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
 
-    m_cog = FilterAngle(deg2rad(m_lastfix.Cog), m_cog);
+    m_cog = FilterAngle(m_lastfix.Cog, m_cog);
     m_sog = FilterSpeed(m_lastfix.Sog, m_sog);
     
 //    m_lasttimerfix = m_lastfix;
 
+    double rotation = 0;
     switch(m_currenttool) {
-    case COURSE_UP:   m_vp.rotation = -m_cog;  break;
-    case HEADING_UP:  m_vp.rotation = -m_heading; break;
+    case COURSE_UP:   rotation = -m_cog;  break;
+    case HEADING_UP:  rotation = -m_heading; break;
     case ROUTE_UP:
     {
         double lastlat = m_routewaypoint.m_lat;
@@ -287,7 +293,7 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
                  m_lastfix.Lat, m_lastfix.Lon,
                  &route_heading, NULL);
 
-            route_heading = deg2rad(route_heading);
+            route_heading = route_heading;
             
             if(isnan(m_route_heading))
                 m_route_heading = route_heading;
@@ -295,20 +301,34 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
             m_route_heading = FilterAngle(route_heading, m_route_heading);
         }
 
-        m_vp.rotation = -m_route_heading;
+        rotation = -m_route_heading;
     } break;
-    case WIND_UP:     m_vp.rotation = -m_truewind; break;
+    case WIND_UP:     rotation = -m_truewind; break;
     default: return;
     }
 
-    m_vp.rotation += deg2rad(m_rotation_offset);
+    rotation += m_rotation_offset;
 
+    // limit rotation to slew rate
+    double crotation = rad2deg(m_vp.rotation);
+    double dr = heading_resolve(rotation - crotation, 0);
+    double max_rotation = m_max_slew_rate;
+    if(dr > max_rotation) {
+        dr = max_rotation;
+        m_bSlewRefresh = true;
+    } else if(dr < -max_rotation) {
+        dr = -max_rotation;
+        m_bSlewRefresh = true;
+    }
+    m_vp.rotation = heading_resolve(crotation + dr);
+    //printf("rotation %f %f\n", m_vp.rotation, dr);
+    m_vp.rotation = deg2rad(m_vp.rotation);
+
+    m_Timer.Start(m_filter_msecs, true);
     if(isnan(m_vp.rotation))
         return;
 
     SetCanvasRotation(m_vp.rotation);
-
-    m_Timer.Start(m_filter_msecs, true);
 }
 
 bool rotationctrl_pi::LoadConfig(void)
@@ -332,7 +352,7 @@ bool rotationctrl_pi::LoadConfig(void)
     SetToolbarToolViz(m_leftclick_tool_ids[WIND_UP], pConf->Read( _T ( "WindUp" ), 0L));
 
     double filter_seconds = 5;
-    pConf->Read( _T ( "UpdatePeriod" ), _T("5")).ToDouble(&filter_seconds);
+    filter_seconds = pConf->ReadDouble( _T ( "UpdateRate" ), 5.0);
     if(filter_seconds < .05) {
         wxMessageDialog mdlg(NULL, _("Invalid update period, defaulting to 5 seconds"),
                              _("Rotation Control Information"), wxOK | wxICON_INFORMATION);
@@ -341,7 +361,10 @@ bool rotationctrl_pi::LoadConfig(void)
     }
 
     m_filter_msecs = 1000.0 * filter_seconds;
-    m_filter_lp = m_filter_msecs / 1000.0 / pConf->Read( _T ( "FilterSeconds" ), 10.0);
+    m_filter_lp = 1.0 / pConf->Read( _T ( "FilterSeconds" ), 10.0);
+    
+    m_max_slew_rate = 20;
+    m_max_slew_rate = pConf->ReadDouble("MaxSlewRate", 20.0);
     m_rotation_offset = pConf->Read( _T ( "RotationOffset" ), 0L);
     
     return true;
@@ -361,7 +384,13 @@ bool rotationctrl_pi::SaveConfig(void)
 
 void rotationctrl_pi::SetCurrentViewPort(PlugIn_ViewPort &vp)
 {
-    if(heading_resolve(m_vp.rotation - vp.rotation) > .001) {
+    // if we are slowed down due to slew rate refresh
+    if(m_bSlewRefresh) {
+        m_bSlewRefresh = false;
+        m_Timer.Start(50, true);
+    }
+
+    if(fabs(heading_resolve(rad2deg(m_vp.rotation - vp.rotation))) > .1) {
         for(int i=0; i<NUM_ROTATION_TOOLS; i++)
             SetToolbarItemState( m_leftclick_tool_ids[i], false );
 
@@ -406,6 +435,11 @@ void rotationctrl_pi::SetNMEASentence( wxString &sentence )
         if( m_NMEA0183.Parse() ) {
             if( !wxIsNaN(m_NMEA0183.Hdt.DegreesTrue) )
                 m_heading = FilterAngle(m_NMEA0183.Hdt.DegreesTrue, m_heading);
+        }
+    } else if( m_currenttool == HEADING_UP && m_NMEA0183.LastSentenceIDReceived == _T("HDM") ) {
+        if( m_NMEA0183.Parse() ) {
+            if( !wxIsNaN(m_NMEA0183.Hdm.DegreesMagnetic) )
+                m_heading = FilterAngle(m_NMEA0183.Hdm.DegreesMagnetic, m_heading - Declination()) + Declination();
         }
     }
     // NMEA 0183 standard Wind Direction and Speed, with respect to north.
@@ -506,6 +540,11 @@ void rotationctrl_pi::SetPluginMessage(wxString &message_id, wxString &message_b
         m_routeguid = v[_T("GUID")].AsString();
         Reset();
         m_Timer.Start(1, true); // start right away
+    } else if(message_id == _T("WMM_VARIATION_BOAT")) {
+        if(r.Parse( message_body, &v ) == 0) {
+            v[_T("Decl")].AsString().ToDouble(&m_declination);
+            m_declinationTime = wxDateTime::Now();
+        }
     }
 }
 
@@ -527,13 +566,13 @@ double rotationctrl_pi::FilterAngle(double input, double last)
     if(isnan(last))
         return input;
 
-    double x = sin(input), y = cos(input);
-    double lx = sin(last), ly = cos(last);
+    double x = sin(deg2rad(input)), y = cos(deg2rad(input));
+    double lx = sin(deg2rad(last)), ly = cos(deg2rad(last));
 
     x = m_filter_lp*x + (1-m_filter_lp)*lx;
     y = m_filter_lp*y + (1-m_filter_lp)*ly;
 
-    return atan2(x, y);
+    return rad2deg(atan2(x, y));
 }
 
 double rotationctrl_pi::FilterSpeed(double input, double last)
@@ -547,12 +586,27 @@ double rotationctrl_pi::FilterSpeed(double input, double last)
     return m_filter_lp*input + (1-m_filter_lp)*last;
 }
 
+double rotationctrl_pi::Declination()
+{
+    if(m_declinationRequestTime.IsValid() &&
+       (wxDateTime::Now() - m_declinationRequestTime).GetSeconds() < 6)
+        return m_declination;
+    m_declinationRequestTime = wxDateTime::Now();
+
+    if(!m_declinationTime.IsValid() || (wxDateTime::Now() - m_declinationTime).GetSeconds() > 1200) {
+        wxJSONWriter w;
+        wxString out;
+        wxJSONValue v;
+        w.Write(v, out);
+        SendPluginMessage(wxString(_T("WMM_VARIATION_BOAT_REQUEST")), out);
+    }
+    return m_declination;
+}
+
+
 void rotationctrl_pi::Reset()
 {
 //    m_lastfix.Lat = NAN;
-    m_sog = m_cog = NAN;
-    m_heading = m_truewind = NAN;
-    m_route_heading = NAN;
     m_rotation_dir = 0;
     m_tilt_dir = 0;
 }
