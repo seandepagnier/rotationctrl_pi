@@ -131,12 +131,13 @@ public:
       double m_max_slew_rate;
       double m_rotation_offset;
       bool m_bSlewRefresh;
+      bool m_LimitRotation, m_LimitFilter;
 
       int               m_leftclick_tool_ids[NUM_ROTATION_TOOLS];
 
 protected:
 
-      double FilterAngle(double input, double last);
+      double FilterAngle(double input, double last, bool resetlimit=true);
       double FilterSpeed(double input, double last);
 
       PlugIn_Position_Fix_Ex m_lastfix; // m_lasttimerfix;
