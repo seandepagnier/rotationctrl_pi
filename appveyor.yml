@@ -45,7 +45,7 @@ build_script:
   - cmake --build . --target package --config release
 
 artifacts:
-  - path: 'build\climatology_pi*.exe'
+  - path: 'build\rotationctrl_pi*.exe'
     name: installer
 
 deploy:
