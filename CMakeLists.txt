@@ -15,9 +15,6 @@ SET(VERBOSE_NAME RotationCtrl)
 SET(TITLE_NAME ROTATIONCTRL)
 SET(CPACK_PACKAGE_CONTACT "Sean D'Epagnier ")
 
-INCLUDE( VERSION.cmake )                                                                                      
-SET(PLUGIN_VERSION "${PLUGIN_VERSION_MAJOR}.${PLUGIN_VERSION_MINOR}.${PLUGIN_VERSION_PATCH}" )
-
 INCLUDE("cmake/PluginConfigure.cmake")
 
 SET(SRC_ROTATIONCTRL
@@ -27,10 +24,10 @@ SET(SRC_ROTATIONCTRL
             src/icons.cpp
 	)
 
+ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_ROTATIONCTRL})
+
 INCLUDE("cmake/PluginNMEA.cmake")
 INCLUDE("cmake/PluginJSON.cmake")
-
-ADD_LIBRARY(${PACKAGE_NAME} SHARED ${SRC_ROTATIONCTRL} ${SRC_NMEA0183} ${SRC_JSON})
 
 INCLUDE("cmake/PluginInstall.cmake")
 INCLUDE("cmake/PluginLocalization.cmake")
