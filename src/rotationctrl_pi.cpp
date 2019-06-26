@@ -127,6 +127,7 @@ int rotationctrl_pi::Init(void)
 
     LoadConfig(); //    And load the configuration items
     m_bSlewRefresh = false;
+    m_LimitRotation = m_LimitFilter = false;
 
     m_Timer.Connect(wxEVT_TIMER, wxTimerEventHandler
                     ( rotationctrl_pi::OnTimer ), NULL, this);
@@ -205,6 +206,8 @@ void rotationctrl_pi::OnToolbarToolCallback(int id)
 {
     for(int i=0; i<NUM_ROTATION_TOOLS; i++)
         if(m_leftclick_tool_ids[i] == id) {
+            m_LimitRotation = false; // initially rotate fully
+            m_LimitFilter = false; // reset filter
             switch(i) {
             case NORTH_UP:
                 SetCanvasRotation(0);
@@ -269,7 +272,7 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
 {
 //    double dt = m_lastfix.FixTime - m_lasttimerfix.FixTime;
 
-    m_cog = FilterAngle(m_lastfix.Cog, m_cog);
+    m_cog = FilterAngle(m_lastfix.Cog, m_cog, m_currenttool == COURSE_UP);
     m_sog = FilterSpeed(m_lastfix.Sog, m_sog);
     
 //    m_lasttimerfix = m_lastfix;
@@ -313,18 +316,29 @@ void rotationctrl_pi::OnTimer( wxTimerEvent & )
     double crotation = rad2deg(m_vp.rotation);
     double dr = heading_resolve(rotation - crotation, 0);
     double max_rotation = m_max_slew_rate;
-    if(dr > max_rotation) {
-        dr = max_rotation;
-        m_bSlewRefresh = true;
-    } else if(dr < -max_rotation) {
-        dr = -max_rotation;
-        m_bSlewRefresh = true;
-    }
+    if(m_LimitRotation) {
+        if(dr > max_rotation) {
+            dr = max_rotation;
+            m_bSlewRefresh = true;
+        } else if(dr < -max_rotation) {
+            dr = -max_rotation;
+            m_bSlewRefresh = true;
+        }
+    } else if(m_LimitFilter)
+        m_LimitRotation = true;
+
+    m_Timer.Start(m_filter_msecs, true);
+    if(m_LimitFilter) // wait until the initial unfiltered value is ready
+        return;
+    
+    double min_rotation = 1;
+    if(fabs(dr) < min_rotation)
+        return;
+    
     m_vp.rotation = heading_resolve(crotation + dr);
     //printf("rotation %f %f\n", m_vp.rotation, dr);
     m_vp.rotation = deg2rad(m_vp.rotation);
 
-    m_Timer.Start(m_filter_msecs, true);
     if(isnan(m_vp.rotation))
         return;
 
@@ -443,19 +457,38 @@ void rotationctrl_pi::SetNMEASentence( wxString &sentence )
         }
     }
     // NMEA 0183 standard Wind Direction and Speed, with respect to north.
-    else if( m_currenttool == WIND_UP && m_NMEA0183.LastSentenceIDReceived == _T("MWD") ) {
-        if( m_NMEA0183.Parse() ) {
-            // Option for True vs Magnetic
-            wxString windunit;
-            double truewind = 0;
-            if( m_NMEA0183.Mwd.WindAngleTrue < 999. ) { //if WindAngleTrue is available, use it ...
-                truewind = m_NMEA0183.Mwd.WindAngleTrue;
-            } else if( m_NMEA0183.Mwd.WindAngleMagnetic < 999. ) { //otherwise try WindAngleMagnetic ...
-                // TODO: use wmm plugin to compensate to true wind
-                truewind = m_NMEA0183.Mwd.WindAngleMagnetic;
-            }
+    else if( m_currenttool == WIND_UP && m_NMEA0183.LastSentenceIDReceived == _T("MWV") ) {
+        if( m_NMEA0183.Parse() && m_NMEA0183.Mwv.IsDataValid == NTrue ) {
+            if( m_NMEA0183.Mwv.WindAngle < 999. ) { //if WindAngleTrue is available, use i
+                double truewind;
+                if(m_NMEA0183.Mwv.Reference == _T("R")) {
+                    double SpeedFactor = 1.0; //knots ("N")
+                    if (m_NMEA0183.Mwv.WindSpeedUnits == _T("K") ) SpeedFactor = 0.53995 ; //km/h > knots
+                    if (m_NMEA0183.Mwv.WindSpeedUnits == _T("M") ) SpeedFactor = 1.94384;
+                    double VA = m_NMEA0183.Mwv.WindSpeed * SpeedFactor;
+                    // need to calculate true wind here
+                    double VB = m_lastfix.Sog;
+                    double A = m_NMEA0183.Mwv.WindAngle;
+/*
+            Law of cosines;
+           ________________________
+          /  2    2
+   VW =  / VA + VB - 2 VA VB cos(A)
+       \/
+*/
+                    double VW = sqrt(VA*VA + VB*VB - 2*VA*VB*cos(deg2rad(A)));
 
-            m_truewind = FilterAngle(truewind, m_truewind);
+                    //sin(Pi-W)*VW = sin(A)*VA
+                    double W = 180 - rad2deg(asin(sin(deg2rad(A))*VA/VW));
+                    truewind = W;
+                } else {
+                    // already true wind
+                    truewind = m_NMEA0183.Mwv.WindAngle;
+                }
+
+                truewind = heading_resolve(truewind + m_lastfix.Cog);
+                m_truewind = FilterAngle(truewind, m_truewind);
+            }
         }
     }
 
@@ -463,16 +496,7 @@ void rotationctrl_pi::SetNMEASentence( wxString &sentence )
        can use wmm plugin if only magnetic data is available as weell
        in the case of apparent wind, we need to compensate from speed as well (either water or gps), */
 
-#if 0 // Not yet implemented
-
-        // NMEA 0183 standard Wind Speed and Angle, in relation to the vessel's bow/centerline.
-        else if( m_NMEA0183.LastSentenceIDReceived == _T("MWV") ) {
-            if( m_NMEA0183.Parse() ) {
-                if( m_NMEA0183.Mwv.IsDataValid == NTrue ) {
-                    m_NMEA0183.Mwv.WindAngle;
-                }
-            }
-        }
+#if 0
 
         /* NMEA 0183 Relative (Apparent) Wind Speed and Angle. Wind angle in relation
          * to the vessel's heading, and wind speed measured relative to the moving vessel. */
@@ -558,7 +582,7 @@ void rotationctrl_pi::ShowPreferencesDialog( wxWindow* parent )
     LoadConfig();
 }
 
-double rotationctrl_pi::FilterAngle(double input, double last)
+double rotationctrl_pi::FilterAngle(double input, double last, bool resetlimit)
 {
     if(isnan(input))
         return last;
@@ -569,8 +593,11 @@ double rotationctrl_pi::FilterAngle(double input, double last)
     double x = sin(deg2rad(input)), y = cos(deg2rad(input));
     double lx = sin(deg2rad(last)), ly = cos(deg2rad(last));
 
-    x = m_filter_lp*x + (1-m_filter_lp)*lx;
-    y = m_filter_lp*y + (1-m_filter_lp)*ly;
+    if(m_LimitRotation) {
+        x = m_filter_lp*x + (1-m_filter_lp)*lx;
+        y = m_filter_lp*y + (1-m_filter_lp)*ly;
+    } if(resetlimit)
+          m_LimitFilter = true;
 
     return rad2deg(atan2(x, y));
 }
