@@ -1,0 +1,20 @@
+site:
+  title: Rotation Comtrol Plugin Manual
+  url:  https://nowhere.net
+  start_page: rotationctrl:ROOT:rotationctrl.adoc
+
+content:
+  sources:
+    - url: ../..
+      start_path: manual/rotationctrl
+      branches: HEAD
+      edit_url: https://github.com/opencpn-manuals/rotationctrl_pi/edit/master/{path}
+
+ui:   
+  bundle:
+    url: https://gitlab.com/leamas/antora-ui-default/-/raw/master/latest/ui-bundle.zip
+    snapshot: true
+
+output:
+  dir: ./docs
+  clean: true              
