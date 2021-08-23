@@ -18,27 +18,6 @@ This plugin is an early testing release. +
 You may encounter some bugs in this plug-in. +
 See “Remarks”, part B and C._
 
-* link:rotationctrl.html#what_and_why[What and Why]
-** link:rotationctrl.html#a_what_can_rotation-pi_do[A. What can
-Rotation-pi do]
-** link:rotationctrl.html#b_why_can_rotation-pi_be_useful[B. Why can
-Rotation-pi be useful]
-* link:rotationctrl.html#installation[Installation]
-** link:rotationctrl.html#a_where_to_get_rotation-pi[A. Where to get
-Rotation-pi]
-** link:rotationctrl.html#b_how_to_install_rotation-pi[B. How to install
-Rotation-pi]
-* link:rotationctrl.html#standard_actions[Standard Actions]
-* link:rotationctrl.html#remarks[Remarks]
-** link:rotationctrl.html#a_why_or_why_not_north_up[A. Why (or why not)
-"North up"?]
-** link:rotationctrl.html#b_notes_on_possible_strange_behavior_of_enc-text[B.
-Strange behavior of ENC-text]
-** link:rotationctrl.html#c_notes_on_strange_interaction_with_google_earth[C.
-Strange interaction with Google Earth]
-** link:rotationctrl.html#d_notes_on_possible_performance-issues[D.
-Notes on possible performance-issues]
-
 === 1. What and Why
 
 ==== A. What can Rotation-pi do
@@ -126,7 +105,6 @@ image::rotctrl_route_up.png[]
 
 image::rotctrl_wind_up.png[]
 
-link:rotationctrl.html[Back to top of page ↑]
 
 === 2. Installation
 
@@ -169,8 +147,6 @@ image::rotctrl_preferences.png[]
  
 image::rotctrl_preferences-2.png[]
 
-link:rotationctrl.html[Back to top of page ↑]
-
 === 3. Standard Actions
 
 What are basic (standard) actions you have to do to make Rotation-pi
@@ -185,7 +161,6 @@ work yet! +
 To go back to the normal representation (“North up”) click the “North
 up”-button. +
  +
-link:rotationctrl.html[Back to top of page ↑]
 
 === 4. Remarks
 
@@ -222,7 +197,6 @@ in mind?
 
 image::rotctrl_uk_south_up.png[]
 
-link:rotationctrl.html[Back to top of page ↑]
 
 === B. Notes on possible strange behavior of ENC-text
 
@@ -256,7 +230,6 @@ It can not happen while using a raster chart (on a raster chart you will
 not lose the text, but the text will be rotated the same way as the rest
 of the information on that chart).
 
-link:rotationctrl.html[Back to top of page ↑]
 
 === C. Notes on strange interaction with Google Earth
 
@@ -281,4 +254,3 @@ world. That takes a lot more than just rotating that ship-icon. On less
 powerful systems it might cause the system to respond slower than
 desired (or it might cause other problems).
 
-link:rotationctrl.html[Back to top of page ↑]
