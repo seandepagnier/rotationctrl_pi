@@ -1,7 +1,7 @@
 site:
   title: Rotation Comtrol Plugin Manual
   url:  https://nowhere.net
-  start_page: rotationctrl:ROOT:rotationctrl.adoc
+  start_page: rotationctrl:ROOT:index.adoc
 
 content:
   sources:
