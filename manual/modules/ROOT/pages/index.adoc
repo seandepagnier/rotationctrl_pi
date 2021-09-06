@@ -2,73 +2,55 @@
 
 image::rotctrl_buttons.png[]
 
-This document is about Rotation Control-plugin (Rotation-pi)
 
 == Links
 
 * Source: https://github.com/seandepagnier/rotationctrl_pi +
+* Maintenance Source: https://github.com/rgleason/rotationctrl_pi +
 * Download: https://opencpn.org/OpenCPN/plugins/chartrotation.html +
-* Forum:
-http://www.cruisersforum.com/forums/f134/rotationctrl-plugin-144542.html +
-
+* Forum: http://www.cruisersforum.com/forums/f134/rotationctrl-plugin-144542.html +
  
-_*Important
-Note*: 
-This plugin is an early testing release. +
-You may encounter some bugs in this plug-in. +
-See “Remarks”, part B and C._
+Note: RotationCtrl is an early testing release so you may encounter some bugs. +
 
 == 1. What and Why
 
-=== A. What can Rotation-pi do
-
-The plugin allows the user to control the way the chart is shown on the
+Rotation Control Plugin (RotationCtrl-pi) allows the user to control the way the chart is shown on the
 the computer-screen.
+
+=== A. What RotationCtrl can do
 
 You can rotate the chart manually (clockwise, counterclockwise) and in
 the following manners:
 
-* *North* up (the top of the chart corresponds to the direction of true
-North).
-* *South* up (the top of the chart corresponds to the direction of true
-South).
-* *Course* up (the top of the chart points corresponds to the direction
-you are actually goïng (Course over Ground).
-* *Heading* up (the top of the chart corresponds to the direction you
-are steering).
-* *Route* up (the top of the chart corresponds to the waypoint that is
-activated as “navigate to”.
-* *Wind* up (the top of the chart corresponds to the direction the wind
-is coming from).
+. *North* up (the top of the chart corresponds to the direction of true North).
+. *South* up (the top of the chart corresponds to the direction of true South).
+. *Course* up (the top of the chart points corresponds to the direction you are actually goïng (Course over Ground).
+. *Heading* up (the top of the chart corresponds to the direction you are steering).
+. *Route* up (the top of the chart corresponds to the waypoint that is activated as “navigate to”.
+. *Wind* up (the top of the chart corresponds to the direction the wind is coming from).
 
-The plugin gets the necessary information in the following manners:
+The plugin gets the necessary information in the following ways:
 
-* about “*North*“and “*South*”: from the information in your *digital
-charts*.
-* about your *course*: from your *GPS*.
-* about your *heading*: from your *(electronic) compass* that outputs
-NMEA-data to OpenCPN.
-* about your *route*: from *OpenCPN* (when you have activated a route).
-* about the *wind*: from your *wind sensor* that outputs NMEA-data to
-OpenCPN.
+. about “*North*“and “*South*”: from the information in your *digital charts*.
+. about your *course*: from your *GPS*.
+. about your *heading*: from your *(electronic) compass* that outputs NMEA-data to OpenCPN.
+. about your *route*: from *OpenCPN* (when you have activated a route).
+. about the *wind*: from your *wind sensor* that outputs NMEA-data to OpenCPN.
 
-=== B. Why can Rotation-pi be useful
+=== B. Why Rotation-pi can be useful
 
 Normally the representation of a chart is “North up”.
 
-That means Top is “North”, Right hand side is “East”, Bottom is “South”
-and Left hand side is “West”.
+That means Top is “North”, Right hand side is “East”, Bottom is “South” and Left hand side is “West”.
 
-But maybe you prefer to have the top of the chart corresponding to
-“South”.
+But maybe you prefer to have the top of the chart corresponding to “South”.
 
 Or to have the top of the chart corresponding to:
 
 * your present course (to where you are really going to)
 * or heading (to the direction your bow is pointing to)
 * or route (to where you are supposed to go)
-* or the wind-direction (the direction to avoid facing while throwing up
-or peeing).
+* or the wind-direction (the direction to avoid facing while throwing up or peeing).
 
 *Examples*:
 
@@ -79,11 +61,9 @@ image::rotctrl_north_up.png[]
 * The *wind* (blue arrow) is from the *West*.
 * The ship's *heading* is the *red dashed* line.
 * The ships *course* (over the ground) is the *white dotted* line.
-* The ships *route* (next active waypoint) is the red dot at the end of
-the *green line* (and don't worry, she's just about to turn to port).
+* The ships *route* (next active waypoint) is the red dot at the end of the *green line* (and don't worry, she's just about to turn to port).
 
-The next illustrations show you the differences. Note the rotation of
-the coastline.
+The next illustrations show you the differences. Note the rotation of the coastline.
 
 *South* up
 
@@ -105,35 +85,16 @@ image::rotctrl_route_up.png[]
 
 image::rotctrl_wind_up.png[]
 
-
 == 2. Installation
 
-=== A. Where to get Rotation-pi
+The OpenCPN Manual has general information in xref:opencpn-plugins:misc:plugin-install.adoc[Plugin Download, Install and Enable] for installing this plugin. This is the preferred way.
 
-Rotation-pi can be downloaded from
-https://opencpn.org/OpenCPN/info/downloadplugins.html
+Rotation-pi can also be downloaded from https://opencpn.org/OpenCPN/info/downloadplugins.html
+and installed with a Legacy Pl Package.
 
 image::rotctrl_download.png[]
 
-=== B. How to install Rotation-pi
-
-Make sure you choose the file that is compatible to your
-computersystem. +
-In this manual we presume it's Windows, so we choose the Windows
-setup-package.
-
-image::rotctrl_setup_package.png[]
-
-Download the file (double-click). Double-click the downloaded file (with
-“rotationctrl_pi” in the name and ”.exe” as extension) and follow the
-set-up instructions. +
-That's it.
-
-Open (or restart) OpenCPN. +
-Click *Tools-Options-Plugins* +
-Scroll down untill you see the Rotation-pi.
-
-Click “*enable*”.
+Don't forget to enable the plugin.
 
 image::rotctrl_enable.png[]
 
@@ -141,13 +102,15 @@ The Rotation-pi icons should appear in your Toolbar.
 
 image::rotctrl_buttons.png[]
 
+== 3. Setting Preferences
+
 Additionally you can set the *Preferences*. 
 
 image::rotctrl_preferences.png[]
  
 image::rotctrl_preferences-2.png[]
 
-== 3. Standard Actions
+== 4. Standard Actions
 
 What are basic (standard) actions you have to do to make Rotation-pi
 work. +
@@ -162,9 +125,9 @@ To go back to the normal representation (“North up”) click the “North
 up”-button. +
  +
 
-== 4. Remarks
+== 5. Remarks
 
-== A. Why (or why not) "North up"?
+=== A. Why (or why not) "North up"?
 
 image::rotctrl_real_north_up_vector.png[]
 
@@ -197,8 +160,7 @@ in mind?
 
 image::rotctrl_uk_south_up.png[]
 
-
-== B. Notes on possible strange behavior of ENC-text
+=== B. Notes on possible strange behavior of ENC-text
 
 When using ENC-charts (vector-charts) you might experience some weird
 behavior when using any other mode than “North up”.
@@ -230,10 +192,9 @@ It can not happen while using a raster chart (on a raster chart you will
 not lose the text, but the text will be rotated the same way as the rest
 of the information on that chart).
 
+=== C. Notes on strange interaction with Google Earth
 
-== C. Notes on strange interaction with Google Earth
-
-When jused in conjunction with the Google Earth-plugin, something
+When used in conjunction with the Google Earth-plugin, something
 strange happens. In any representation-mode other than “North-up” or
 “South-up”, the picture in the Google Earth-window rotates
 *_+++opposite+++_* to the rotation of the main screen (the chart). +
@@ -245,7 +206,7 @@ image::rotctrl_google_earth_contra.png[]
 True, it does make navigation more interesting, but nevertheless should
 be considered a bug in this
 
-== D. Notes on possible performance-issues
+=== D. Notes on possible performance-issues
 
 When you alter course, something happens on your OpenCPN screen. In
 normal mode (“North up”) OpenCPN rotates your ship's icon. But in modes
@@ -253,4 +214,3 @@ normal mode (“North up”) OpenCPN rotates your ship's icon. But in modes
 world. That takes a lot more than just rotating that ship-icon. On less
 powerful systems it might cause the system to respond slower than
 desired (or it might cause other problems).
-
