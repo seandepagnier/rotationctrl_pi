@@ -1,5 +1,5 @@
 site:
-  title: Rotation Control Plugin Manual
+  title: Rotation Control
   url:  https://nowhere.net
   start_page: rotationctrl:ROOT:index.adoc
 
