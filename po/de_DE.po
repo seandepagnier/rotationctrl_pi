@@ -3,27 +3,28 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: 2018-03-03 08:23-0500\n"
-"Last-Translator: nohal <pavel@kalian.cz>\n"
+"PO-Revision-Date: 2023-10-04 18:33\n"
+"Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Project-ID: 49843\n"
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
+"X-Crowdin-File-ID: 191\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr ""
+msgstr "Drehung über [ ] aktivieren/deaktivieren / Tasten erfordert einen Neustart OpenCPN."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr ""
+msgstr "Informationen zur Drehung"
 
 #: src/PreferencesDialog.cpp:90
 msgid "Advanced Control of the Viewport Rotation\n\n"
@@ -36,27 +37,27 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
-msgstr ""
+msgstr "Symbole der Funktionsleiste"
 
 #: src/RotationCtrlUI.cpp:29
 msgid "Manual Rotate"
-msgstr ""
+msgstr "Manuelle Drehung"
 
 #: src/RotationCtrlUI.cpp:33
 msgid "Manual Tilt"
-msgstr ""
+msgstr "Manuelle Neigung"
 
 #: src/RotationCtrlUI.cpp:36 src/rotationctrl_pi.cpp:102
 msgid "North Up"
-msgstr ""
+msgstr "Norden oben"
 
 #: src/RotationCtrlUI.cpp:39 src/rotationctrl_pi.cpp:106
 msgid "South Up"
-msgstr ""
+msgstr "Süden oben"
 
 #: src/RotationCtrlUI.cpp:42
 msgid "Course Up  (from GPS)"
-msgstr ""
+msgstr "Kurs oben (von GPS)"
 
 #: src/RotationCtrlUI.cpp:45
 msgid "Heading Up (NMEA)"
@@ -72,7 +73,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:61
 msgid "Dynamic Filter Settings"
-msgstr ""
+msgstr "Dynamische Filter Einstellungen"
 
 #: src/RotationCtrlUI.cpp:68
 msgid "Update Period"
@@ -84,7 +85,7 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:75 src/RotationCtrlUI.cpp:86
 msgid "Seconds"
-msgstr ""
+msgstr "Sekunden"
 
 #: src/RotationCtrlUI.cpp:79
 msgid "Filter Over"
@@ -92,23 +93,23 @@ msgstr ""
 
 #: src/RotationCtrlUI.cpp:90
 msgid "Rotation Offset"
-msgstr ""
+msgstr "Drehungs-Offset"
 
 #: src/RotationCtrlUI.cpp:97
 msgid "Degrees"
-msgstr ""
+msgstr "Grad"
 
 #: src/RotationCtrlUI.cpp:107
 msgid "Enable Rotation via [ ] / Keys"
-msgstr ""
+msgstr "Rotation aktivieren über [ ] / Tasten"
 
 #: src/RotationCtrlUI.cpp:121
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: src/RotationCtrlUI.cpp:124
 msgid "About Author"
-msgstr ""
+msgstr "Über den Autor"
 
 #: src/RotationCtrlUI.h:72
 msgid "Rotation Control Preferences"
@@ -116,11 +117,11 @@ msgstr ""
 
 #: src/rotationctrl_pi.cpp:86
 msgid "Rotate CCW"
-msgstr ""
+msgstr "Drehen gegen Uhrzeigersinn"
 
 #: src/rotationctrl_pi.cpp:90
 msgid "Rotate CW"
-msgstr ""
+msgstr "Drehen Uhrzeigesinn"
 
 #: src/rotationctrl_pi.cpp:94
 msgid "Tilt Up"
