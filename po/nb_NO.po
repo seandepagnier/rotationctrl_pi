@@ -3,27 +3,28 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-25 09:49-0300\n"
-"PO-Revision-Date: 2018-03-03 08:25-0500\n"
-"Last-Translator: nohal <pavel@kalian.cz>\n"
+"PO-Revision-Date: 2023-10-04 18:33\n"
+"Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Project-ID: 49843\n"
 "X-Crowdin-Language: nb\n"
 "X-Crowdin-File: /plugins/rotationctrl_pi/po/rotationctrl_pi.pot\n"
+"X-Crowdin-File-ID: 191\n"
 
 #: src/PreferencesDialog.cpp:79
 msgid "Enabling/Disabling rotation via [ ] / keys requires restarting OpenCPN."
-msgstr ""
+msgstr "Aktivere/deaktivere rotasjon via [ ] / tastene krever omstart av OpenCPN."
 
 #: src/PreferencesDialog.cpp:81 src/PreferencesDialog.cpp:97
 #: src/rotationctrl_pi.cpp:338
 msgid "Rotation Control Information"
-msgstr ""
+msgstr "Informasjon om rotasjons kontroll"
 
 #: src/PreferencesDialog.cpp:90
 msgid "Advanced Control of the Viewport Rotation\n\n"
@@ -32,7 +33,12 @@ msgid "Advanced Control of the Viewport Rotation\n\n"
 "Route Up, activate a route or waypoint (right click navigate to)\n"
 "Wind Up requires wind sensor via nmea data.\n"
 "Heading Up Requires magnetic heading sensor via nmea data.\n"
-msgstr ""
+msgstr "Avanser kontroll for rotasjon av visningsvindu\n\n"
+"Sett oppdateringsperioden til en brøkdel (f.eks. 2) for rask oppdatering, (dette kan bruke veldig mye CPU kraft)\n"
+"Rotasjonsforskyvning tillater kurs Høyre (90) Kurs ned (180) osv...\n\n"
+"Rute opp, aktiver en rute eller et veipunkt (høyreklikk naviger til)\n"
+"Vind opp krever en vindsensor via NMEA data.\n"
+"Kurs opp krever en magnetisk kurs sensor via NMEA data.\n"
 
 #: src/RotationCtrlUI.cpp:22
 msgid "Toolbar Icons"
@@ -157,7 +163,8 @@ msgstr "Rotasjons kontroll utvidelse for OpenCPN"
 #: src/rotationctrl_pi.cpp:186
 msgid "Rotation Control PlugIn for OpenCPN\n"
 "Advanced control of the viewport rotation angle."
-msgstr ""
+msgstr "Rotasjons kontroll utvidelsen for OpenCPN\n"
+"Avansert kontroll av rotasjons vinkel til visningsvinduet."
 
 #: src/rotationctrl_pi.cpp:337
 msgid "Invalid update period, defaulting to 5 seconds"
